@@ -1,12 +1,22 @@
 import Navbar from "./components/Navbar.js"
+import Posts from "./components/Posts.js"
+import NoMatch from './components/NoMatch.js';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Navbar />
-      </header>
-    </div>
+    <>
+    <Navbar />  
+
+    <Routes>
+          <Route path="/" />
+          <Route path="/posts" element={ <Posts />} />
+          <Route path="*" element={<NoMatch />} />
+    </Routes>
+
+
+    </>
+    
   );
 }
 

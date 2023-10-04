@@ -1,14 +1,21 @@
 body {
   overflow-x: hidden;
-  font-family: Sans-Serif;
+  font-family: 'DM Sans', sans-serif;
   margin: 0;
+}
+
+ ul li a:hover {
+  color: #4a545e;
+ }
+ 
+ul li a.active:not(.no-active-color) {
+  color: #2a9d8f;
 }
 
 .menu-container {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   background: #f4a261;
   color: #292f36;
   padding: 20px;

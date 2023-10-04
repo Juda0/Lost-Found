@@ -1,9 +1,10 @@
 import "../css/Navbar.css"
 import logo from "../assets/logo.svg"
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   return <>
-    <nav class="menu-container">
+    <nav className="menu-container">
   {/* burger menu */}
   <input type="checkbox" aria-label="Toggle menu" />
   <span></span>
@@ -11,34 +12,34 @@ function Navbar() {
   <span></span>
 
   {/* logo */}
-  <a href="#/" class="menu-logo">
+  <NavLink to="/" className="menu-logo">
     <img src={logo} alt="Lost&Found"/>
-  </a>
+  </NavLink>
 
   {/* menu items */}
-  <div class="menu">
+  <div className="menu">
     <ul>
       <li>
-        <a href="#/">
+        <NavLink to="/" className="no-active-color">
           <b>LostAndFound</b>
-        </a>
+        </NavLink>
       </li>
     </ul>
     <ul>
       <li>
-        <a href="#find">
+        <NavLink to="/find">
           Find
-        </a>
+        </NavLink>
       </li>
       <li>
-        <a href="#posts">
+        <NavLink to="/posts">
           Posts
-        </a>
+        </NavLink>
       </li>
       <li>
-        <a href="#posts">
+        <NavLink to="/account">
           Account
-        </a>
+        </NavLink>
       </li>
     </ul>
   </div>
