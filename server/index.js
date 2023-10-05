@@ -1,23 +1,21 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const port = process.env.PORT || 4000;
 
-// Allow following external request to the server:
+// Allow external requests
 app.use(cors({
   origin: 'http://localhost:3000',
 }));
 
+app.use(express.json()); // Enable JSON parsing for incoming requests
 
-app.get("/", (req, res) => {
-  res.status(201).send("Listening on port 4000")
-})
+// Import and use your routers
+const postRouter = require('./routes/postRoutes');
 
-const postRouter = require("./routes/posts")
-const claimRouter = require("./routes/claims")
+app.use('/posts', postRouter);
 
-app.use("/posts", postRouter)
-app.use("/claims", claimRouter)
-
-app.listen(4000, () => {
-  console.log("Listen to port 4000");
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
