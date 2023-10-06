@@ -1,4 +1,4 @@
-import Navbar from "./components/Header/Navbar.js"
+import Navbar from "./components/Shared/Navbar.js"
 import Posts from "./components/Posts/Posts.js"
 import NoMatch from './components/NoMatch/NoMatch.js';
 import { Routes, Route } from 'react-router-dom';
