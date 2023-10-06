@@ -1,23 +1,25 @@
-// import React from 'react';
-import { useEffect, useState } from 'react' 
-const Posts = () => {
+import { useEffect, useState } from 'react';
+import axiosConfig from '../../config/axiosConfig';
 
-  const [MyPosts, setPosts] = useState(null)
-  
+const Posts = () => {
+  const [myPosts, setMyPosts] = useState(null);
+
   useEffect(() => {
-    fetch('http://localhost:4000/posts')
-    .then(res => {
-      return res.json()
-    })
-    .then((data => {
-      console.log(data)
-    }))
-  }, [])
+    // Make an Axios request using axiosConfig
+    axiosConfig
+      .get('/posts')
+      .then((response) => {
+        setMyPosts(response.data); // Update the state with the response data
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
-  <>
-    return posts
-  </>
+    <>
+      {myPosts}
+    </>
   );
 };
 
