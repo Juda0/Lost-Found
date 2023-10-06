@@ -5,5 +5,5 @@ const postController = require('../controllers/postController');
 // Define routes for the Post entity
 router.get('/create', postController.createPost);
 // Define more routes as needed
-
+router.get('/', postController.getAllPosts);
 module.exports = router;
