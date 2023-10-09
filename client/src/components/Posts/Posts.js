@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import axiosConfig from '../../config/axiosConfig';
+import "./Card.css"
+import LostItem from "../../assets/LostItem.svg"
 
 const Posts = () => {
-  const [myPosts, setMyPosts] = useState(null);
+  const [myPosts, setMyPosts] = useState([]);
 
   useEffect(() => {
     // Make an Axios request using axiosConfig
@@ -18,7 +20,15 @@ const Posts = () => {
 
   return (
     <>
-      {myPosts}
+    <center>
+      {myPosts.map((post) => (
+        <div key={post.id} className="card divSection2">
+          <img className='cardImg' src={LostItem} alt="Avatar" />
+          <h2>{post.title}</h2>
+          <p>{post.description}</p>
+        </div>
+      ))}
+      </center>
     </>
   );
 };
