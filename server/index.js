@@ -12,8 +12,11 @@ app.use(express.json()); // Enable JSON parsing for incoming requests
 
 // Import and use your routers
 const postRouter = require('./routes/postRoutes');
-
 app.use('/posts', postRouter);
+
+const UserRouter = require('./routes/UserRoutes');
+app.use('/user', UserRouter);
+
 
 // Start the server
 app.listen(port, () => {

@@ -1,10 +1,15 @@
 // controllers/postController.js
-const { Posts } = require('../models'); // Import the Post model
+const { Post } = require('../models');
 
 // Controller functions
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await Posts.findAll(); // Retrieve all posts from the database
+    const userId = req.user.userId; // get userId that is set in middleware
+
+    const posts = await Post.findAll({
+      where: { userId }, // Filter posts with matching userId
+    });
+
     res.status(200).json(posts);
   } catch (error) {
     console.error(error);
@@ -18,13 +23,14 @@ const createPost = async (req, res) => {
     const { userId, title, description, latitude, longitude, tags } = req.body;
 
     // Create a new post in the database
-    const newPost = await Posts.create({
+    const newPost = await Post.create({
       userId: 1,
       title: "testItem",
       description: "goodArchitecture",
       latitude,
       longitude,
       tags: "dsda",
+      userId: 1,
     });
 
     res.status(201).json({ message: 'Post created successfully', post: newPost });
