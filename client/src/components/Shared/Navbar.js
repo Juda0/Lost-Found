@@ -1,6 +1,7 @@
 import "../../css/Navbar.css"
 import logo from "../../assets/logo.svg"
 import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
 
 function Navbar() {
   return <>
@@ -37,8 +38,8 @@ function Navbar() {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/account">
-          Account
+        <NavLink to="/login">
+          Login
         </NavLink>
       </li>
     </ul>

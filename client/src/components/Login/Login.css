@@ -1,0 +1,36 @@
+.userForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20vh;
+  height: 100vh; /* This centers the form vertically on the page */
+}
+
+label{
+  font-weight: bold;
+}
+
+input{
+  padding: 4px;
+  background-color: rgb(233, 233, 233);
+  border: 1px solid #292f362c;
+}
+
+button{
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #2a9d8f;
+  transition: all .3s;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+button:hover{
+  background-color: #47beb1;
+}
+
+#errorMessage{
+  color: red;
+}
