@@ -6,6 +6,29 @@
   height: 100vh; /* This centers the form vertically on the page */
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btnPrimary {
+  flex: 1;
+}
+
+.btnSecondary {
+  margin-left: 10px; /* Add margin for spacing */
+  background-color: transparent;
+  border: 1px solid #2a9d8f;
+  color: #2a9d8f;
+}
+.btnSecondary:hover {
+  margin-left: 10px; /* Add margin for spacing */
+  background-color: transparent;
+  color: #000000;
+}
+
 label{
   font-weight: bold;
 }
@@ -14,23 +37,4 @@ input{
   padding: 4px;
   background-color: rgb(233, 233, 233);
   border: 1px solid #292f362c;
-}
-
-button{
-  margin: 20px;
-  padding: 10px;
-  cursor: pointer;
-  background-color: #2a9d8f;
-  transition: all .3s;
-  color: white;
-  border: none;
-  border-radius: 6px;
-}
-
-button:hover{
-  background-color: #47beb1;
-}
-
-#errorMessage{
-  color: red;
 }

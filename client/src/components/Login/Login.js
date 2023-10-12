@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from '../../config/axiosConfig';
 import './Login.css';
-import { json } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 async function userLogin(credentials) {
   try {
@@ -33,6 +33,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setError] = useState(null); // State for displaying login errors
 
+  const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
       e.preventDefault();
       setError(null); // Clear any previous error
@@ -48,23 +50,33 @@ const Login = () => {
       }
     };
 
+
+    // Navigate to the registration page when the "Register" button is clicked
+    const handleRegisterClick = () => {
+      navigate('/register')
+    };
+
   return (
     <>
     <center>
-      <form className='userForm' onSubmit={handleSubmit}>
-        <label>
-          <p>Email</p>
-          <input type="text" name='email' onChange={(e) => setEmail(e.target.value)}/>
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
-        </label>
-        <div>
-          <button type="submit">Login</button>
-        </div>
+      <div className='userForm'>
+        <form  onSubmit={handleSubmit}>
+        <h2>Sign in to your account</h2>
+          <label>
+            <p>Email</p>
+            <input type="text" name='email' onChange={(e) => setEmail(e.target.value)}/>
+          </label>
+          <label>
+            <p>Password</p>
+            <input type="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
+          </label>
+          <div className="button-container">
+            <button type="submit" className='btnPrimary'>Login</button>
+            <button onClick={handleRegisterClick} className='btnSecondary'>Register</button>
+          </div>
+        </form>
         <p id='errorMessage'>{errorMessage}</p>
-      </form>
+      </div>
     </center>
     </>
   );
