@@ -43,6 +43,7 @@ const Login = () => {
         const token = await userLogin({ email, password });
         if (token) {
           localStorage.setItem('authToken', token);
+          navigate('/posts');
           console.log('You are now logged in!');
         }
       } catch (error) {
