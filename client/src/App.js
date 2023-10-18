@@ -1,4 +1,5 @@
 import Navbar from "./components/Shared/Navbar.js"
+import Home from "./components/Home/Home.js"
 import Posts from "./components/Posts/Posts.js"
 import Login from "./components/Login/Login.js"
 import Register from "./components/Register/Register.js"
@@ -11,7 +12,7 @@ function App() {
     <Navbar />  
 
     <Routes>
-          <Route path="/" />
+          <Route path="/" element={ <Home />} />
           <Route path="/posts" element={ <Posts />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

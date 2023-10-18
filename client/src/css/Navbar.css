@@ -15,7 +15,6 @@ ul li a.active:not(.no-active-color) {
 .menu-container {
   position: relative;
   display: flex;
-  align-items: center;
   background: #f4a261;
   color: #292f36;
   padding: 20px;

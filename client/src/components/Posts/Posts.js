@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from '../../config/axiosConfig';
 import "./Card.css"
 import LostItem from "../../assets/LostItem.svg"
-import { useNavigate } from 'react-router-dom';
-
 const Posts = () => {
   const [myPosts, setMyPosts] = useState([]);
 
