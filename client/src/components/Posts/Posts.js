@@ -3,6 +3,7 @@ import axios from '../../config/axiosConfig';
 import "./Card.css"
 import LostItem from "../../assets/LostItem.svg"
 const Posts = () => {
+  let [apiError, setApiError] = useState();
   const [myPosts, setMyPosts] = useState([]);
 
   useEffect(() => {
@@ -11,6 +12,7 @@ const Posts = () => {
 
     // Function to fetch all posts
     const fetchAllPosts = async () => {
+      setApiError("") // Clear error
       // Make an Axios request using axiosConfig
       axios
       .get('/posts')
@@ -18,12 +20,14 @@ const Posts = () => {
         setMyPosts(response.data); // Update the state with the response data
       })
       .catch((error) => {
+        setApiError('Your posts could not be fetched.')
         console.error(error);
       });
    };
 
    async function newPost() {
     try {
+      setApiError() // Clear error
       const response = await axios.post('/posts/create');
   
       if (response.status === 201) {
@@ -31,15 +35,8 @@ const Posts = () => {
         return response.data;
       }
     } catch (error) {
-      if (error.response) {
-        if (error.response.status === 401) {
-          throw new Error('Invalid email and/or password');
-        } else {
-          throw new Error('Post creation. Please try again later.');
-        }
-      } else {
-        throw new Error('Network error: Unable to connect to the server.');
-      }
+      setApiError('New post could not be created.')
+      console.error('Unexpected error:', error);
     }
   }
 
@@ -51,6 +48,7 @@ const Posts = () => {
   return (
     <>
     <center>
+      <p className='error-message'>{apiError}</p>
       <button onClick={handleNewPost}>+</button>
       {myPosts.map((post) => (
         <div key={post.id} className="card divSection2">

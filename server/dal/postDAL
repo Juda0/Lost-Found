@@ -8,7 +8,6 @@ class PostDAL extends IPostDAL {
         where: { userId },
         });
     } catch (error) {
-        console.error(error);
         throw error; // You should throw the error to propagate it to the caller
     }
     };
@@ -18,7 +17,6 @@ class PostDAL extends IPostDAL {
         const newPost = await Post.create(post); // Create the post directly
         return newPost;
     } catch (error) {
-        console.error(error);
         throw error;
     }
     }

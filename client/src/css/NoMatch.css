@@ -16,8 +16,7 @@
 }
 
 .error-message {
-  font-size: 2rem;
-  color: #f4a261;
+  color: #ff0000;
   margin-top: 10px;
 }
 

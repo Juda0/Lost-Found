@@ -18,17 +18,18 @@ const createPost = async (req, res) => {
     const post = {
       title: "testItem",
       description: "goodArchitecture",
-      latitude: "",
-      longitude: "",
+      latitude: null,
+      longitude: null,
       tags: "dsda",
       userId: req.user.userId
     };
     
-    const newPost = await postDAL.createPost(post); // Fix the createPost call
+    const newPost = await postDAL.createPost(post);
     res.status(201).json({ message: 'Post created successfully', post: newPost });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to create post' });
+    throw error
   }
 };
 
