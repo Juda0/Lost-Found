@@ -2,7 +2,7 @@
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
-const config = require('../config'); // Inject the configuration service
+const config = require('../jwtconfig'); // Inject the configuration service
 
 function generateAccessToken(userId) {
   return jwt.sign(userId, config.jwtSecret, { expiresIn: '1800s' });
