@@ -4,7 +4,7 @@ import postRouter from './routes/postRoutes';
 import userRouter from './routes/userRoutes';
 
 const app = express();
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 4000;
 
 // Allow external requests
 app.use(cors({

@@ -14,6 +14,7 @@ const Posts = () => {
     const fetchAllPosts = async () => {
       setApiError("") // Clear error
       // Make an Axios request using axiosConfig
+
       axios
       .get('/posts')
       .then((response) => {

@@ -2,25 +2,26 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from '../config/jwtConfig';
-import UserDAL from '../dal/UserDAL';
-import createUserModel from '../models/User'; // Updated import
 
-import { Sequelize } from 'sequelize';
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
-// Replace this with your Sequelize configuration
-const sequelizeConfig = {
-  dialect: 'mysql',
-  host: 'your_database_host',
-  username: 'your_username',
-  password: 'your_password',
-  database: 'your_database_name',
-};
 
-const sequelize = new Sequelize(sequelizeConfig);
+async function main() {
+  const allUsers = await prisma.user.findMany()
+  console.log(allUsers)
+}
 
-const UserModel = createUserModel(sequelize); // Create the UserModel instance
-const userDAL = new UserDAL(UserModel);
-
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
+  
 function generateAccessToken(userId: number) {
   return jwt.sign({ userId }, config.jwtSecret, { expiresIn: '1800s' });
 }
@@ -32,15 +33,15 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     // Hash the password before storing it
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userExists = await userDAL.findUserByEmail(email);
+    const userExists = await prisma.user.findUnique({ where: {email: email} });
 
     if (userExists) {
       res.status(400).json({ error: 'User already exists' });
       return; // Return early to avoid further code execution
     }
-
-    // Create a new user with the hashed password
-    const newUser = await userDAL.createUser(username, email, hashedPassword); // Provide the necessary arguments
+    
+    // // Create a new user with the hashed password
+    const newUser = await prisma.user.create({ data: {username: username, email: email, password: hashedPassword}}); // Provide the necessary arguments
 
     res.status(201).json({ message: 'User successfully registered' });
   } catch (error) {
@@ -53,7 +54,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
 
-    const user = await userDAL.findUserByEmail(email);
+    const user = await prisma.user.findUnique({ where: {email: email} });
 
     if (!user) {
       res.status(401).json({ error: 'Invalid email or password' });
