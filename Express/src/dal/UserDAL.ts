@@ -1,22 +1,24 @@
-import { ModelStatic, Sequelize } from 'sequelize';
-import UserModelInstance from '../models/UserModel'; // Import the UserModelInstance interface
+import { PrismaClient } from '@prisma/client';
 
-class UserDAL {
-  private UserModel: ModelStatic<UserModelInstance>;
-
-  constructor(userModel: ModelStatic<UserModelInstance>) {
-    this.UserModel = userModel;
-  }
-
-  async createUser(username: string, email: string, password: string): Promise<UserModelInstance> {
-    // Create a new user record in the database
-    return await this.UserModel.create({ username, email, password });
-  }
-
-  async findUserByEmail(email: string): Promise<UserModelInstance | null> {
-    // Find a user by email in the database
-    return await this.UserModel.findOne({ where: { email } });
-  }
+// DAL Interface
+export interface IUserDAL {
+  createUser(username: string, email: string, password: string): Promise<void>;
+  findUserByEmail(email: string): Promise<any>;
 }
 
-export default UserDAL;
+export class UserDAL implements IUserDAL {
+  prisma: PrismaClient;
+  constructor() {
+    this.prisma = new PrismaClient();
+  }
+
+  async createUser(username: string, email: string, password: string): Promise<void> {
+    await this.prisma.user.create({
+      data: { username, email, password },
+    });
+  }
+
+  async findUserByEmail(email: string): Promise<any> {
+    return this.prisma.user.findUnique({ where: { email } });
+  }
+}
