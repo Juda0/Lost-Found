@@ -1,23 +1,19 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from '../config/jwtConfig';
-import { UserDAL, IUserDAL } from '../dal/UserDAL';
-
-// Logic Interface
-export interface IUserLogic {
-    register(username: string, email: string, password: string): Promise<void>;
-    login(email: string, password: string): Promise<string | null>;
-}
+import { IUserLogic } from '../interfaces/logic/IUserLogic';
+import { IUserDAL } from '../interfaces/IUserDAL';
 
 export class UserLogic implements IUserLogic {
-  userDAL:IUserDAL;
-    constructor() {
-        this.userDAL = new UserDAL();
-    }
+  userDAL: IUserDAL;
+
+  constructor(userDAL: IUserDAL) {
+    this.userDAL = userDAL;
+  }
 
   async register(username: string, email: string, password: string): Promise<void> {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const userExists = await this.userDAL.findUserByEmail(email);
+    const userExists = await this.userDAL.getUserByEmail(email);
 
     if (userExists) {
       throw new Error('User already exists');
@@ -27,7 +23,7 @@ export class UserLogic implements IUserLogic {
   }
 
   async login(email: string, password: string): Promise<string | null> {
-    const user = await this.userDAL.findUserByEmail(email);
+    const user = await this.userDAL.getUserByEmail(email);
 
     if (!user) {
       return null;

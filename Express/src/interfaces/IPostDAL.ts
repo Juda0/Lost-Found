@@ -1,11 +1,4 @@
-class IPostDAL {
-  async getPosts(userId: number): Promise<any> {
-    throw new Error('Method not implemented');
-  }
-
-  async createPost(post: any): Promise<any> {
-    throw new Error('Method not implemented');
-  }
+export interface IPostDAL {
+  getPosts(userId: number): Promise<any>;
+  createPost(post: any): Promise<any>;
 }
-
-export default IPostDAL;

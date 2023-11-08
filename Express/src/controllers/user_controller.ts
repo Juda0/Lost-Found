@@ -1,14 +1,11 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import config from '../config/jwtConfig';
-import { IUserLogic, UserLogic } from '../logic/UserLogic'
+import { IUserLogic } from '../interfaces/logic/IUserLogic';
 
 export class UserController {
   logic: IUserLogic;
-  
-  constructor() {
-    this.logic = new UserLogic(); 
+
+  constructor(logic: IUserLogic) {
+    this.logic = logic;
   }
 
   register = async (req: Request, res: Response): Promise<void> => {

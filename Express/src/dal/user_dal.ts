@@ -1,10 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-
-// DAL Interface
-export interface IUserDAL {
-  createUser(username: string, email: string, password: string): Promise<void>;
-  findUserByEmail(email: string): Promise<any>;
-}
+import { IUserDAL } from '../interfaces/IUserDAL';
 
 export class UserDAL implements IUserDAL {
   prisma: PrismaClient;
@@ -18,7 +13,7 @@ export class UserDAL implements IUserDAL {
     });
   }
 
-  async findUserByEmail(email: string): Promise<any> {
+  async getUserByEmail(email: string): Promise<any> {
     return this.prisma.user.findUnique({ where: { email } });
   }
 }
