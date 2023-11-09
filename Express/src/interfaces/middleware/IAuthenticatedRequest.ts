@@ -1,5 +1,5 @@
 import { Request } from 'express';
 
 export interface IAuthenticatedRequest extends Request {
-  user: { userId: number };
+  user?: { userId: number } | null;
 }

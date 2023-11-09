@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Make instance of axios
 const instance = axios.create({
-    baseURL: 'http://localhost:4000/'
+  baseURL: 'http://localhost:4000/',
 });
 
 instance.interceptors.request.use(
@@ -15,8 +15,5 @@ instance.interceptors.request.use(
     },
     (error) => Promise.reject(error),
   );
-
-// Where you would set stuff like your 'Authorization' header, etc ...
-// instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM INSTANCE';
 
 export default instance;
