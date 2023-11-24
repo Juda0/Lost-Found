@@ -19,7 +19,7 @@ jobs:
         node-version: 14
 
     - name: Change Directory to Express
-      run: cd lost-found/Express
+      run: cd Express
 
     - name: Install Dependencies
       run: npm install
