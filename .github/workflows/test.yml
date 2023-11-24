@@ -21,7 +21,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: cd Express && npm install 
-    - run: cd Express && npm run build --if-present
     - run: cd Express && npm test
       env:
         CI: true
