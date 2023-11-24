@@ -12,14 +12,13 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+      with:
+        path: Lost-Found/Express
 
     - name: Set Up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 14
-
-    - name: Change Directory to Express
-      run: cd Express
 
     - name: Install Dependencies
       run: npm install
