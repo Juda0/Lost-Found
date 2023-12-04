@@ -23,7 +23,6 @@ export class UserDAL implements IUserDAL {
       });
       return result;
     } catch (error) {
-      console.error(error);
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
         console.log('There is a unique constraint violation, a new user cannot be created with this email');
       }
