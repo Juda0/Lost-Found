@@ -1,39 +1,31 @@
-# This workflow will install Node.js dependencies, build and test your project on every push
+# This workflow will install Node.js dependencies, clean, build, and test your project on every push
 name: Run Tests
- 
+
 # Trigger the workflow on every push
 on: push
- 
+
 # Set up the job
 jobs:
   build:
- 
+
     # Run the job on ubuntu-latest
     runs-on: ubuntu-latest
- 
+
     # Set up the Node.js environment
     strategy:
       matrix:
         node-version: [16.x]
- 
+
     # Steps to run the workflow
     steps:
-    # Check out the repository
-    - uses: actions/checkout@v2
-    # Install Node.js
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    # Install npm dependencies
-    - name: Install npm
-      run: npm install
-      working-directory: Express
-    # Build the project
-    - name: Build
-      run: npm run build
-      working-directory: Express
-    # Test the project
-    - name: Test
-      run: npm test
-      working-directory: Express
+      # Check out the repository
+      - uses: actions/checkout@v2
+
+      # Clean the project, install Node.js dependencies, build, and test
+      - name: Clean, Install Dependencies, Build, and Test
+        run: |
+          npm run clean
+          npm ci
+          npm run build
+          npm test
+        working-directory: Express
