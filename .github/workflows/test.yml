@@ -25,5 +25,5 @@ jobs:
         working-directory: Express
 
       - name: Test
-        run: npm test
+        run: npm run test
         working-directory: Express
