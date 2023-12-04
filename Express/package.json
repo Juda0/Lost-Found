@@ -6,6 +6,7 @@
   "scripts": {
     "dist": "node dist/src/index.js",
     "start": "nodemon --exec ts-node src/index.ts",
+    "clean": "rm -rf dist",
     "build": "tsc",
     "test": "jest --watchAll --verbose"
   },
