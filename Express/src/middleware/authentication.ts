@@ -1,6 +1,6 @@
 // middleware/authentication.ts
-import { Request, Response, NextFunction } from 'express';
-import jwt, { VerifyErrors, JwtPayload } from 'jsonwebtoken';
+import { Response, NextFunction } from 'express';
+import jwt, {  JwtPayload } from 'jsonwebtoken';
 import { promisify } from 'util';
 import config from '../config/jwtConfig';
 import { IAuthenticatedRequest } from '../interfaces/middleware/IAuthenticatedRequest';
@@ -24,7 +24,7 @@ export default async function authenticateToken(req: IAuthenticatedRequest, res:
       return;
     }
 
-    req.user = { userId: decoded.userId };
+    req.user = { userId: decoded['userId'] };
     next();
   } catch (error) {
     console.error('Error during token verification:', error);

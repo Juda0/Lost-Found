@@ -1,5 +1,5 @@
 // controllers/postController.ts
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { IAuthenticatedRequest } from '../interfaces/middleware/IAuthenticatedRequest'
 import { IPostLogic } from '../interfaces/logic/IPostLogic';
 

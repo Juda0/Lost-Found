@@ -1,5 +1,5 @@
 // routes/postRoutes.ts
-import express, { Router, Request, Response } from 'express';
+import express, { Router, Response } from 'express';
 import authenticateToken from '../middleware/authentication';
 import { PostController } from '../controllers/post_controller';
 import { PostLogic } from '../logic/post_logic';

@@ -2,12 +2,12 @@ import { PrismaClient, Prisma } from '@prisma/client';
 import { IUserDAL } from '../interfaces/IUserDAL';
 import { User } from '../models/user';
 
-class DuplicateUserError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'DuplicateUserError';
-  }
-}
+// class DuplicateUserError extends Error {
+//   constructor(message: string) {
+//     super(message);
+//     this.name = 'DuplicateUserError';
+//   }
+// }
 
 export class UserDAL implements IUserDAL {
   prisma: PrismaClient;

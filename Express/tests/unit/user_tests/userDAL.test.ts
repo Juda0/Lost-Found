@@ -1,6 +1,5 @@
 // tests/unit/user_tests/userDAL.test.ts
 
-import { Prisma } from '@prisma/client';
 import { UserDAL } from '../../../src/dal/user_dal';
 import { prismaMock } from './singleton';
 

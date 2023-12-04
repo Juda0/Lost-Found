@@ -14,7 +14,7 @@
     "declaration": true,
     "rootDir": "./",
     "removeComments": true,
-    "noEmit": true,  // Set to false if you want to generate JavaScript files
+    "noEmit": false,  // Set to false if you want to generate JavaScript files
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
