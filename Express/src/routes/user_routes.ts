@@ -2,7 +2,7 @@ import express, { Router } from 'express';
 import { UserController } from '../controllers/user_controller';
 import { UserLogic } from '../logic/user_logic';
 import { UserDAL } from '../dal/user_dal';
-import { PrismaClient } from '@prisma/client/edge';
+import { PrismaClient } from '@prisma/client';
 
 
 const router: Router = express.Router();
