@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from '@prisma/client';
+import { PrismaClient  } from '@prisma/client';
 import { IUserDAL } from '../interfaces/IUserDAL';
 import { User } from '../models/user';
 
@@ -22,11 +22,11 @@ export class UserDAL implements IUserDAL {
         data: { username, email, password },
       });
       return result;
-    } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+    } catch (e: unknown) {
+      if (e instanceof Error && e.message.includes('P2002')) {
         console.log('There is a unique constraint violation, a new user cannot be created with this email');
       }
-      throw error;
+      throw e
     }
   }
 
