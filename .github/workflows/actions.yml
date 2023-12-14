@@ -37,7 +37,7 @@ jobs:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          docker build -t lostfound-express-server Dockerfile
+          docker build -t lostfound-express-server ./Express
             --build-arg JWT_SECRET=$JWT_SECRET \
             --build-arg DB_PASSWORD=$DB_PASSWORD \
             -t juda0/lostfounddockerhub:latest .
