@@ -19,9 +19,6 @@ RUN npm run build
 # Use a smaller image for the production build
 FROM node:16-alpine
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
-
 # Copy the build from the react-builder stage
 COPY --from=react-builder /usr/src/client/build ./client
 
