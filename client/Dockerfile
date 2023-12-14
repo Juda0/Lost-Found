@@ -17,13 +17,19 @@ COPY client/ ./
 RUN npm run build
 
 # Use a smaller image for the production build
-FROM nginx:alpine
+FROM node:16-alpine
 
-# Copy the build from the react-builder stage to the nginx web root
-COPY --from=react-builder /usr/src/client/build /usr/share/nginx/html
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Expose the port on which the React app will run
+# Copy the build from the react-builder stage
+COPY --from=react-builder /usr/src/client/build ./client
+
+# Expose the port on which the Node.js server will run
 EXPOSE 3000
 
-# The default command to start the nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Set environment variables for the application (if needed)
+# ENV REACT_APP_API_URL=https://your-api-url
+
+# Define the command to run the Node.js server
+CMD ["npm", "start"]
