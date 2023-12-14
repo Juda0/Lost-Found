@@ -5,13 +5,13 @@ FROM node:16 AS react-builder
 WORKDIR /usr/src/client
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY client/package*.json ./
 
 # Install app dependencies
 RUN npm install
 
 # Copy the client source code
-COPY . .
+COPY client/ ./
 
 # Build the React app
 RUN npm run build
