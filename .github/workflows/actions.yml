@@ -53,6 +53,7 @@ jobs:
       - name: Build & push Docker image for Client
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
+            context: ./client  # Set the build context to the /client directory
             image: juda0/lostfoundclientdockerhub
             tags: clientlatest
             registry: docker.io
