@@ -14,7 +14,6 @@ services:
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - DATABASE_URL=${DATABASE_URL}
-    NODE_ENV: production
     ports:
       - 4000:4000
 
