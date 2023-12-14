@@ -4,14 +4,23 @@ FROM node:16 AS react-builder
 # Set the working directory in the container
 WORKDIR /usr/src/client
 
+# Add this line to list the contents of the working directory
+RUN ls -l
+
 # Copy package.json and package-lock.json to the working directory
 COPY client/package*.json ./
+
+# List the contents again to check the copied files
+RUN ls -l
 
 # Install app dependencies
 RUN npm install
 
 # Copy the client source code
 COPY client/ ./
+
+# List the contents again to check the copied source code
+RUN ls -l
 
 # Build the React app
 RUN npm run build
