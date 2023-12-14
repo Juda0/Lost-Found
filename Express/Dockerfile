@@ -11,7 +11,7 @@ COPY Express/package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY . .
+COPY Express/ ./
 
 # Expose the port on which the app will run
 EXPOSE 4000
