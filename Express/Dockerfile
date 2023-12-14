@@ -1,6 +1,10 @@
 # Use an official Node.js runtime as a base image
 FROM node:16
 
+# Set environment variables for the application
+ENV JWT_SECRET=$JWT_SECRET
+ENV DATABASE_URL=$DATABASE_URL
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
@@ -12,14 +16,10 @@ RUN npm install
 RUN npx prisma generate
 
 # Bundle app source
-COPY . .
+COPY Express/ ./
 
 # Expose the port on which the app will run
 EXPOSE 4000
-
-# Set environment variables for the application
-ENV JWT_SECRET=$JWT_SECRET
-ENV DATABASE_URL=$DATABASE_URL
 
 # Define the command to run the application
 CMD ["npm", "start"]
