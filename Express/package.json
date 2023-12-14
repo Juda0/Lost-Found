@@ -9,13 +9,13 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "test": "jest --watchAll --verbose",
-    "testGithub": "jest --verbose" 
+    "testGithub": "jest --verbose"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.5.2",
+    "@prisma/client": "^5.7.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
