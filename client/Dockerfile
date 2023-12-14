@@ -5,13 +5,13 @@ FROM node:16 AS react-builder
 WORKDIR /usr/src/client
 
 # Copy package.json and package-lock.json to the working directory
-COPY client/package*.json ./
+COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
 
 # Copy the client source code
-COPY client/ ./
+COPY . .
 
 # Build the React app
 RUN npm run build
@@ -20,7 +20,7 @@ RUN npm run build
 FROM node:16-alpine
 
 # Copy the build from the react-builder stage
-COPY --from=react-builder /usr/src/client/build ./client
+COPY --from=react-builder /usr/src/client/build .
 
 # Expose the port on which the Node.js server will run
 EXPOSE 3000
