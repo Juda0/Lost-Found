@@ -5,13 +5,14 @@ FROM node:16
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the working directory
-COPY Express/package*.json ./
+COPY /package*.json ./
 
 # Install app dependencies
 RUN npm install
 
 # Bundle app source
-COPY Express/ ./
+COPY . .
+RUN npx prisma generate
 
 # Expose the port on which the app will run
 EXPOSE 4000

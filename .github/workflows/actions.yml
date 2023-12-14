@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Tests and Build Docker Image
 
 on:
   push:
@@ -7,15 +7,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18.x]
-
-    env:
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
       - uses: actions/checkout@v3
@@ -36,15 +32,31 @@ jobs:
         run: npm run testGithub
         working-directory: Express
 
+      - name: Build Docker image
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          docker build \
+            --build-arg JWT_SECRET=$JWT_SECRET \
+            --build-arg DB_PASSWORD=$DB_PASSWORD \
+            -t your-dockerhub-username/your-app-name:latest .
+        
+      - name: Log in to DockerHub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push Docker image
+        run: docker juda0/lostfounddockerhub:latest
+
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
         with:
-            image: juda0/lostfounddockerhub
-            tags: v1, latest
-            registry: docker.io
-            dockerfile: Express/Dockerfile
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-        env:
-            JWT_SECRET: ${{ secrets.JWT_SECRET }}
-            DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          image: juda0/lostfounddockerhub
+          tags: v1, latest
+          registry: docker.io
+          dockerfile: Express/Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+            
