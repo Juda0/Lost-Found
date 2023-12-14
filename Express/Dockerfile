@@ -16,9 +16,9 @@ COPY Express/ ./
 # Expose the port on which the app will run
 EXPOSE 4000
 
-# Output the values for debugging
-RUN echo "JWT_SECRET: $JWT_SECRET"
-RUN echo "DATABASE_URL: $DATABASE_URL"
+# Set environment variables for the application
+ENV JWT_SECRET=$JWT_SECRET
+ENV DATABASE_URL=$DATABASE_URL
 
 # Define the command to run the application
 CMD ["npm", "start"]
