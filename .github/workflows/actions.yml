@@ -41,7 +41,7 @@ jobs:
         name: Build & push Docker image
         with:
             image: juda0/lostfounddockerhub
-            tags: v1, latest
+            tags: expresslatest
             registry: docker.io
             dockerfile: Express/Dockerfile
             username: ${{ secrets.DOCKER_USERNAME }}
@@ -49,3 +49,14 @@ jobs:
         env:
             JWT_SECRET: ${{ env.JWT_SECRET }}
             DATABASE_URL: ${{ env.DATABASE_URL }}
+
+      - name: Build & push Docker image for Client
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+            image: juda0/lostfoundclientdockerhub
+            tags: clientlatest
+            registry: docker.io
+            dockerfile: client/Dockerfile
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+          

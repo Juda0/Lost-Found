@@ -6,7 +6,7 @@ ENV JWT_SECRET=$JWT_SECRET
 ENV DATABASE_URL=$DATABASE_URL
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /usr/src/express
 
 # Copy package.json and package-lock.json to the working directory
 COPY Express/package*.json ./
