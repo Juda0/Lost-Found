@@ -1,8 +1,8 @@
 # Use an official Node.js runtime as a base image
-FROM node:14-alpine
+FROM node:16-alpine
 
 # Set the working directory inside the container
-WORKDIR /app/client
+WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
 COPY client/package*.json ./
