@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the local source code to the container
-COPY client/. .
+COPY . .
 
 # Expose the port on which the app will run
 EXPOSE 3000
