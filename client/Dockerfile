@@ -11,10 +11,10 @@ COPY client/package*.json ./
 RUN npm install
 
 # Copy the local source code to the container
-COPY . .
+COPY client. .
 
 # Expose the port on which the app will run (if applicable)
 EXPOSE 3000
 
 # Start the React app
-CMD ["npm", "run", "dockerStart"]
+CMD ["npm", "start"]
