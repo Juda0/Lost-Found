@@ -5,6 +5,7 @@ import Login from "./components/Login/Login.js"
 import Register from "./components/Register/Register.js"
 import NoMatch from './components/NoMatch/NoMatch.js'
 import { Routes, Route } from 'react-router-dom'
+import Newpost from "./components/Posts/Create/NewPost.js"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NoMatch />} />
+          <Route path="/posts/new" element={<Newpost />} />
     </Routes>
 
 

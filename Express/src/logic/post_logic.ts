@@ -1,5 +1,6 @@
 import { IPostLogic } from '../interfaces/logic/IPostLogic';
 import { IPostDAL } from '../interfaces/IPostDAL';
+import { Post } from 'models/post';
 
 export class PostLogic implements IPostLogic{
   postDAL: IPostDAL;
@@ -7,8 +8,8 @@ export class PostLogic implements IPostLogic{
   constructor(postDAL: IPostDAL) {
     this.postDAL = postDAL;
   }
-
-  async getPosts(userId: number) {
+  
+  getPosts = async (userId: number) => {
     try {
       return this.postDAL.getPosts(userId);
     } catch (error) {
@@ -16,7 +17,8 @@ export class PostLogic implements IPostLogic{
     }
   }
 
-  async createPost(postData: any) {
+  createPost = async(postData: Post) => {
+    
     try {
       return this.postDAL.createPost(postData);
     } catch (error) {

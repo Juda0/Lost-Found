@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom'
 import axios from '../../config/axiosConfig';
 import "./Card.css"
 import LostItem from "../../assets/LostItem.svg"
@@ -50,7 +51,9 @@ const Posts = () => {
     <>
     <center>
       <p className='error-message'>{apiError}</p>
-      <button onClick={handleNewPost}>+</button>
+      <NavLink to="/posts/new" className="no-active-color">
+        <button>+ New Post</button>
+      </NavLink>
       {myPosts.map((post) => (
         <div key={post.id} className="card divSection2">
           <img className='cardImg' src={LostItem} alt="Avatar" />
