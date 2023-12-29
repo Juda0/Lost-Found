@@ -55,7 +55,6 @@ jobs:
             tags: clientlatest
             registry: docker.io
             dockerfile: client/Dockerfile
-            context: client
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_PASSWORD }}
           
