@@ -45,24 +45,19 @@ export class PostController {
         return;
       }
 
-      // Convert req body to post model
-      const postData: Post = req.body;
-
-      // Insert userId into postData
-      // This is required because the ID is in a separate user object
-      postData.userId = req.user?.userId as number;
-
-      // Validate postData
-      this.validatePostData(postData);
-
-      // Handle file upload
-      if (req.file) {
-        const filePath = await this.fileLogic.saveFile(req.file);
-        postData.imagePath = filePath;
-      }
+      // Create post data
+      const postData: Post = {
+        title: req.body.title,
+        description: req.body.description,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        tags: req.body.tags,
+        userId: req.user?.userId as number || 0,
+      };
 
       // Call create post method in logic
-      const newPost = await this.postLogic.createPost(postData);
+      const newPost = await this.postLogic.createPost(postData, req.file);
+
 
       res.status(201).json({ message: 'Post created successfully', post: newPost });
     } catch (error) {

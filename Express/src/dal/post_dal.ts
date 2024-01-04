@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { IPostDAL } from '../interfaces/IPostDAL';
+import { Post } from 'models/post';
 
 export class PostDAL implements IPostDAL {
   prisma: PrismaClient;
@@ -17,7 +18,7 @@ export class PostDAL implements IPostDAL {
     }
   }
 
-  async createPost(postData: any) {
+  async createPost(postData: Post) {
     try {
       return await this.prisma.post.create({
         data: postData,

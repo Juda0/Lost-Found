@@ -65,11 +65,11 @@ const Login = () => {
         <h2>Sign in to your account</h2>
           <label>
             <p>Email</p>
-            <input type="text" name='email' onChange={(e) => setEmail(e.target.value)}/>
+            <input required type="text" name='email' onChange={(e) => setEmail(e.target.value)}/>
           </label>
           <label>
             <p>Password</p>
-            <input type="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
+            <input required type="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
           </label>
           <div className="button-container">
             <button type="submit" className='btnPrimary'>Login</button>

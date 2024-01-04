@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom'
 import axios from '../../config/axiosConfig';
 import "./Card.css"
-import LostItem from "../../assets/LostItem.svg"
+import LostIcon from "../../assets/LostItem.svg"
 const Posts = () => {
   let [apiError, setApiError] = useState();
   const [myPosts, setMyPosts] = useState([]);
@@ -27,26 +27,6 @@ const Posts = () => {
       });
    };
 
-   async function newPost() {
-    try {
-      setApiError() // Clear error
-      const response = await axios.post('/posts/create');
-  
-      if (response.status === 201) {
-        fetchAllPosts();
-        return response.data;
-      }
-    } catch (error) {
-      setApiError('New post could not be created.')
-      console.error('Unexpected error:', error);
-    }
-  }
-
-  // Navigate to the registration page when the "Register" button is clicked
-  const handleNewPost = () => {
-    newPost()
-  };
-
   return (
     <>
     <center>
@@ -54,9 +34,15 @@ const Posts = () => {
       <NavLink to="/posts/new" className="no-active-color">
         <button>+ New Post</button>
       </NavLink>
+      <h1>My posts</h1>
       {myPosts.map((post) => (
         <div key={post.id} className="card divSection2">
-          <img className='cardImg' src={LostItem} alt="Avatar" />
+          {/* Default post image */}
+          {post.imagePath ? (
+            <img className='cardImg' src={process.env.REACT_APP_API_BASE_URL + post.imagePath} alt="Avatar" />
+          ) : (
+            <img className='cardImg' src={LostIcon} alt="Avatar" />
+          )}
           <h2>{post.title}</h2>
           <p>{post.description}</p>
         </div>

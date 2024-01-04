@@ -13,7 +13,10 @@ export class FileLogic {
 
       await fs.writeFile(filePath, file.buffer);
 
-      return relativePath;
+      // Use minimal path for saving to db withoout 'src/'
+      const dbFilePath = path.join('uploads',uniqueFileName)
+      
+      return dbFilePath
     } catch (error) {
       throw error;
     }
