@@ -1,4 +1,4 @@
-import Navbar from "./components/Shared/Navbar.js"
+import Navbar from "./components/Shared/Navbar/Navbar.js"
 import Home from "./components/Home/Home.js"
 import Posts from "./components/Posts/Posts.js"
 import Login from "./components/Login/Login.js"

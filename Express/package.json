@@ -9,7 +9,9 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "test": "jest --watchAll --verbose",
-    "testGithub": "jest --verbose"
+    "testGithub": "jest --verbose",
+    "reset-db": "ts-node -r tsconfig-paths prisma/resetDb.ts",
+    "seed-db": "ts-node -r tsconfig-paths prisma/seedDb.ts"
   },
   "keywords": [],
   "author": "",

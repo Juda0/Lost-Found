@@ -65,14 +65,14 @@ const Login = () => {
         <h2>Sign in to your account</h2>
           <label>
             <p>Email</p>
-            <input type="text" name='email' onChange={(e) => setEmail(e.target.value)}/>
+            <input type="text" data-cy="email" name='email' onChange={(e) => setEmail(e.target.value)}/>
           </label>
           <label>
             <p>Password</p>
-            <input type="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
+            <input type="password" data-cy="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
           </label>
           <div className="button-container">
-            <button type="submit" className='btnPrimary'>Login</button>
+            <button type="submit" data-cy="submit" className='btnPrimary'>Login</button>
             <button onClick={handleRegisterClick} className='btnSecondary'>Register</button>
           </div>
         </form>
