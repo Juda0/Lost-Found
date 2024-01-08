@@ -18,6 +18,16 @@ export class PostDAL implements IPostDAL {
     }
   }
 
+  async getPostById( id: number) {
+    try {
+      return await this.prisma.post.findFirst({
+        where: { id },
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async createPost(postData: Post) {
     try {
       return await this.prisma.post.create({

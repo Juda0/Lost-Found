@@ -41,6 +41,14 @@ export class PostLogic implements IPostLogic {
     }
   }
 
+  getPostById = async (id: number) => {
+    try {
+      return this.postDAL.getPostById(id);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   createPost = async (postData: Post, file: Express.Multer.File | undefined) => {
     try {
       // Convert latitude and longitude to floats

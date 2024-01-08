@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from '../../../config/axiosConfig';
 import './../Card.css';
 import { PostForm } from './PostForm';
+import BackIcon from '../../../assets/BackIcon.svg';
+import { NavLink } from 'react-router-dom';
 
 const Newpost = () => {
   const [apiError, setApiError] = useState();
@@ -40,6 +42,9 @@ const Newpost = () => {
   return (
     <>
       <center>
+        <NavLink to="/posts" className="no-active-color">
+            <img src={BackIcon} alt="Back" className="backIcon"/>
+        </NavLink>
         <p className="error-message">{apiError}</p>
         <PostForm onFormSubmit={handleFormSubmit} />
       </center>

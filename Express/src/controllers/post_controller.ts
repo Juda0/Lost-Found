@@ -1,5 +1,5 @@
 // controllers/postController.ts
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { IAuthenticatedRequest } from '../interfaces/middleware/IAuthenticatedRequest'
 import { IPostLogic } from '../interfaces/logic/IPostLogic';
 import { Post } from 'models/post';
@@ -34,6 +34,28 @@ export class PostController {
     // Check if title, description, and userId are not empty
     if (!postData.title || !postData.description || !postData.userId) {
       throw new Error('Title, description, and a valid user must be provided');
+    }
+  }
+
+  getPostById = async (req: Request, res: Response): Promise<void> => {
+    try {
+  
+      const postId: number = parseInt(req.params['id'] as string); // Use parseInt to convert the string to a number
+      if (isNaN(postId)) {
+        res.status(400).json({ error: 'Invalid post ID', message: 'This post id is not valid' });
+        return;
+      }
+      
+      const post = await this.postLogic.getPostById(postId);
+      if (post === null) {
+        res.status(404).json({ error: 'Post not found', message: 'Post not found' });
+        return;
+      }
+  
+      res.status(200).json(post);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch post', message: 'Failed to fetch post' });
     }
   }
 
