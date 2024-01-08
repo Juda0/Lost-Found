@@ -1,0 +1,8 @@
+.DragChange{
+  color: #2a9d8f;
+  cursor: pointer;
+}
+.DragChangeL:hover{
+  color: #4dd6c6;
+  cursor: pointer;
+}

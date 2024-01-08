@@ -16,13 +16,16 @@ model Post {
   longitude   Float?
   tags        String?  @db.VarChar(150)
   userId      Int
+  status      PostStatus @default(OWNER_NOT_FOUND)
+  imagePath   String?  // New field for the image path
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade, map: "post_ibfk_1")
+  claim       Claim[]
 
   @@index([userId], map: "userId")
   @@map(name: "Post") // New table name (pascal)
-} 
+}
 
 model User {
   id        Int      @id @default(autoincrement())
@@ -32,4 +35,28 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   posts     Post[]   // Updated relation name
+  claims    Claim[]
+}
+
+model Claim {
+  id        Int      @id @default(autoincrement())
+  postId    Int
+  ownerId   Int
+  message   String?
+  status    ClaimStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+enum PostStatus {
+  OWNER_NOT_FOUND
+  OWNER_FOUND
+}
+
+enum ClaimStatus {
+  PENDING
+  ACCEPTED
+  DENIED
 }

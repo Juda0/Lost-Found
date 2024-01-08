@@ -3,9 +3,10 @@ import axios from 'axios';
 
 // Make instance of axios
 const instance = axios.create({
-  baseURL: 'http://localhost:4000/',
+  baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
+// Interceptor for adding a jwt token to each request
 instance.interceptors.request.use(
     (config) => {
       let jwtToken = localStorage.getItem("authToken");
@@ -15,5 +16,19 @@ instance.interceptors.request.use(
     },
     (error) => Promise.reject(error),
   );
+
+  // Interceptor for unauthorized requests
+  instance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      // Check if the error status is 401 (Unauthorized)
+      if (error.response && error.response.status === 401) {
+        // Redirect to the login page
+        window.location.href = '/login'; // Use window.location.href for a full page reload
+      }
+      return Promise.reject(error);
+    }
+  );
+  
 
 export default instance;

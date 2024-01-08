@@ -30,6 +30,7 @@ ul li a.active:not(.no-active-color) {
 }
 
 .menu-logo img {
+  margin: 0px;
   max-height: 40px;
   max-width: 100px;
   flex-shrink: 0;

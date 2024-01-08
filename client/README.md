@@ -1,3 +1,10 @@
+<!--  ADD A ENV FILE WITH PORT OF EXPRESS SERVER 
+
+REACT_APP_API_BASE_URL=http://localhost:xxxx/
+
+
+ -->
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
