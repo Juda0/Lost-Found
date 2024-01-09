@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import locationPin from '../../../assets/location-pin.svg'
-import './form.css'
-import { CreateMap } from '../../Maps/CreateMap'
 import { TagsInput } from "react-tag-input-component";
+import styles from './form.module.css'
+import { CreateMap } from '../../Maps/CreateMap'
+import BackIcon from '../../../assets/BackIcon.svg';
+import { NavLink } from 'react-router-dom';
 
 export const PostForm = ({ onFormSubmit }) => {
   const [zoomValue, setZoomValue] = useState(6);
@@ -98,30 +100,33 @@ export const PostForm = ({ onFormSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <>
+    <NavLink to="/posts" className="no-active-color">
+            <img src={BackIcon} alt="Back" className="backIcon"/>
+        </NavLink>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      
+      <label className={styles['first-label']}>
         Title:
         <input required type="text" placeholder="Silver Necklace.." name="title" value={formData.title} onChange={handleChange} />
       </label>
-      <br />
 
       <label name="description">
         Description:
         <textarea required name="description" placeholder="This necklace has two small.." value={formData.description} onChange={handleChange} />
       </label>
-      <br />
 
       {/* Hidden input fields for latitude and longitude */}
       <input type="hidden" name="latitude" value={formData.latitude || ''} />
       <input type="hidden" name="longitude" value={formData.longitude || ''} />
 
       {/* Text field to display combined coordinates */}
-      <div className="location-input-container">
-        <label>
+      <div className={styles["location-input-container"]}>
+        <label className={styles['input-with-icon-label']}>
           Location:
-          <div className="input-with-icon">
+          <div className={styles["input-with-icon"]}>
             <input style={{color: "gray", backgroundColor: "transparent"}} type="text" value={`${formData.latitude || ''}${coordSeperator} ${formData.longitude || ''}`} readOnly />
-            <img onClick={handleGetLocation} className="locationIcon" src={locationPin} alt="Get Location" />
+            <img onClick={handleGetLocation} className={styles["locationIcon"]} src={locationPin} alt="Get Location" />
           </div>
         </label>
       <CreateMap key={mapCenter} center={mapCenter} title={formData.title} description={formData.description} zoom={zoomValue} onMarkerPositionChange={handleMarkerPositionChange}/>
@@ -143,15 +148,12 @@ export const PostForm = ({ onFormSubmit }) => {
         Image:
         <input type="file" name="image" onChange={handleChange} accept="image/*" />
       </label>
-      <br />
-
       {imagePreview && (
-        <img src={imagePreview} alt="Preview" style={{ maxWidth: '50%', marginTop: '10px' }} />
+        <img src={imagePreview} alt="Preview" className={styles['preview-image']}/>
       )}
-
-      <br />
 
       <button type="submit">Create Post</button>
     </form>
+    </>
   );
 };

@@ -86,6 +86,7 @@ ul li a.active:not(.no-active-color) {
   opacity: 1;
   transform: rotate(45deg) translate(3px,-1px);
   background: #f4a261;
+  z-index: 2; /* Increase z-index for the close icon */
 }
 
 .menu-container input:checked ~ span:nth-child(4) {
@@ -125,23 +126,23 @@ ul li a.active:not(.no-active-color) {
   }
 
   .menu {
-    position: absolute;
+    position: fixed;
     box-sizing: border-box;
-    width: 300px;
-    right: -300px;
+    width: 70%; /* Adjust this to take the full width of the screen */
+    right: 0; /* Adjust this to stick to the right */
     top: 0;
-    margin: -20px;
     padding: 75px 50px 50px;
     background: #292f36;
     -webkit-font-smoothing: antialiased;
     /* to stop flickering of text in safari */
     transform-origin: 0% 0%;
-    transform: translateX(0%);
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    transform: translateX(100%); /* Adjust to 100% to hide the menu initially */
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    z-index: 1; /* Increase z-index */
   }
 
   .menu-container input:checked ~ .menu {
-    transform: translateX(-100%);
+    transform: translateX(0%);
   }
 }
 

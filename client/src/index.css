@@ -15,5 +15,9 @@ code {
 
 .backIcon{
   width:30px;
-  margin-bottom: 40px;
+  align-self: flex-start; /* Align to the top of the container */
+}
+
+a{
+  text-decoration: none;
 }

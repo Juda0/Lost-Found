@@ -37,7 +37,7 @@ export const CreateMap = ({ center, zoom, title, description, onMarkerPositionCh
     }, []);
 
     return (
-        <MapContainer center={center} zoom={zoom} title={title} description={description} style={{ height: "300px", width: "100%", border: "1px solid #c8c9ca"}}>
+        <MapContainer center={center} zoom={zoom} title={title} description={description} className='mapContainer'>
              <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />

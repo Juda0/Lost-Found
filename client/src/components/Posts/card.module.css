@@ -1,4 +1,8 @@
 /* Updated styles for the modified layout */
+h1{
+  margin-top:50px;
+}
+
 .custom-table {
   width: 55%;
   border-collapse: collapse;
@@ -6,28 +10,29 @@
 }
 
 .custom-table th, .custom-table td {
-  border-bottom: 1px solid #e9c46a; /* Horizontal border lines */
+  border-bottom: 1px solid rgb(228, 216, 188); /* Horizontal border lines */
   padding: 20px;
   text-align: center;
 }
 
-.custom-table tr {
-  cursor: pointer; /* Set pointer cursor for the whole row */
-}
-
-.custom-table tr:hover {
-  cursor: pointer; /* Set pointer cursor for the whole row */
-  background-color: #e9c56a63;
-}
-
 .cardImg {
-  height: 50px;
-  width: 50px; /* Set a fixed width for the square image */
+  height: 90px;
+  width: 90px; /* Set a fixed width for the square image */
+  border-radius: 5px;
+}
+
+.cardImg:hover{
+ cursor: pointer;
 }
 
 .cardContent {
   display: flex;
   align-items: center; /* Align items vertically in the container */
+}@media (max-width: 768px) {
+  .cardContent {
+    flex-direction: column; /* Stack content vertically on small screens */
+    align-items: flex-start; /* Align items to the start of the flex container */
+  }
 }
 
 .cardTitle {
@@ -40,11 +45,14 @@
 .statusIcon {
   height: 20px;
   width: 20px; /* Adjust width to control icon size */
-  cursor: pointer;
 }
 
 .binIcon {
   height: 20px;
   width: 20px; /* Adjust width to control icon size */
   cursor: pointer;
+}
+
+.card-link{
+  color: #292f36;
 }

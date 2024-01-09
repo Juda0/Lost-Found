@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from '../../config/axiosConfig';
-import "./Card.css";
+import styles from "./card.module.css";
 import LostIcon from "../../assets/LostItem.svg";
 import BinIcon from "../../assets/BinIcon.svg";
 import CheckmarkIcon from "../../assets/CheckmarkIcon.svg";
@@ -33,12 +33,12 @@ const Posts = () => {
   return (
     <>
       <center>
-        <p className='error-message'>{apiError}</p>
-        <NavLink to="/posts/new" className="no-active-color">
+        <p className={styles['error-message']}>{apiError}</p>
+        <NavLink to="/posts/new" className={styles['no-active-color']}>
           <button>+ New Post</button>
         </NavLink>
         <h1>My posts</h1>
-        <table className="custom-table">
+        <table className={styles['custom-table']}>
           <thead>
             <tr>
               <th></th>
@@ -50,27 +50,27 @@ const Posts = () => {
             {myPosts.map((post) => (
               <tr key={post.id}>
                 <td>
-                <NavLink to={`/posts/${post.id}/view`} className="card-link">
-                  <div className="cardContent">
+                <NavLink to={`/posts/${post.id}/view`} className={styles['card-link']}>
+                  <div className={styles['cardContent']}>
                     {/* Default post image */}
                     {post.imagePath ? (
-                      <img className='cardImg' src={process.env.REACT_APP_API_BASE_URL + post.imagePath} alt="Avatar" />
+                      <img className={styles['cardImg']} src={process.env.REACT_APP_API_BASE_URL + post.imagePath} alt="Avatar" />
                     ) : (
-                      <img className='cardImg' src={LostIcon} alt="Avatar" />
+                      <img className={styles['cardImg']} src={LostIcon} alt="Avatar" />
                     )}
-                    <h2 className='cardTitle'>{post.title}</h2>
+                    <h2 className={styles['cardTitle']}>{post.title}</h2>
                   </div>
                   </NavLink>
                 </td>
                 <td>
                   {post.status === "OWNER_FOUND" ? (
-                    <img className='statusIcon' src={CheckmarkIcon} alt="Green Checkmark" />
+                    <img className={styles['statusIcon']} src={CheckmarkIcon} alt="Green Checkmark" />
                   ) : (
-                    <img className='statusIcon' src={NotClaimedIcon} alt="Not Claimed Yet" />
+                    <img className={styles['statusIcon']} src={NotClaimedIcon} alt="Not Claimed Yet" />
                   )}
                 </td>
                 <td>
-                  <img className='binIcon' src={BinIcon} alt="Bin Icon" />
+                  <img className={styles['binIcon']} src={BinIcon} alt="Bin Icon" />
                 </td>
               </tr>
             ))}

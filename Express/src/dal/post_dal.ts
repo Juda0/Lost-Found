@@ -12,6 +12,9 @@ export class PostDAL implements IPostDAL {
     try {
       return await this.prisma.post.findMany({
         where: { userId },
+        orderBy: {
+          status: 'asc',
+        },
       });
     } catch (error) {
       throw error;
