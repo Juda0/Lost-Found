@@ -6,6 +6,7 @@ import LostIcon from "../../assets/LostItem.svg";
 import BinIcon from "../../assets/BinIcon.svg";
 import CheckmarkIcon from "../../assets/CheckmarkIcon.svg";
 import NotClaimedIcon from "../../assets/NotClaimedIcon.svg";
+import { MDBSpinner } from 'mdb-react-ui-kit';
 
 const Posts = () => {
   const [apiError, setApiError] = useState();
@@ -29,6 +30,17 @@ const Posts = () => {
         console.error(error);
       });
   };
+
+  if(myPosts.length === 0 && !apiError) {
+    return(
+      <div className="d-flex align-items-center justify-content-center">
+      <MDBSpinner className='mx-2' color='warning'>
+      <span className='visually-hidden'>Loading...</span>
+      </MDBSpinner>
+    </div>
+      
+    )
+  }
 
   return (
     <>
