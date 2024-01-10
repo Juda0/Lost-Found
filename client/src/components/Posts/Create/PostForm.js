@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import locationPin from '../../../assets/location-pin.svg'
 import { TagsInput } from "react-tag-input-component";
 import styles from './form.module.css'
-import { CreateMap } from '../../Maps/CreateMap'
+import { CreateMap } from '../../Maps/Create/CreateMap'
 import BackIcon from '../../../assets/BackIcon.svg';
 import { NavLink } from 'react-router-dom';
 
