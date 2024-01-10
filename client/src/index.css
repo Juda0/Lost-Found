@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.backIcon{
+  width:30px;
+  align-self: flex-start; /* Align to the top of the container */
+}
+
+a{
+  text-decoration: none;
+}
