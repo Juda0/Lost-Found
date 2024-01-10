@@ -1,0 +1,59 @@
+/* Updated styles for the modified layout */
+h1{
+  margin-top:50px;
+}
+
+.custom-table {
+  width: 55%;
+  border-collapse: collapse;
+  margin: 20px;
+}
+
+.custom-table th, .custom-table td {
+  border-bottom: 1px solid rgb(228, 216, 188); /* Horizontal border lines */
+  padding: 20px;
+  text-align: center;
+}
+
+.cardImg {
+  object-fit: cover;
+  height: 90px;
+  width: 90px; /* Set a fixed width for the square image */
+  border-radius: 5px;
+}
+
+.cardImg:hover{
+ cursor: pointer;
+}
+
+.cardContent {
+  display: flex;
+  align-items: center; /* Align items vertically in the container */
+}@media (max-width: 768px) {
+  .cardContent {
+    flex-direction: column; /* Stack content vertically on small screens */
+    align-items: flex-start; /* Align items to the start of the flex container */
+  }
+}
+
+.cardTitle {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 10px; /* Add margin between image and title */
+}
+
+.statusIcon {
+  height: 20px;
+  width: 20px; /* Adjust width to control icon size */
+}
+
+.binIcon {
+  height: 20px;
+  width: 20px; /* Adjust width to control icon size */
+  cursor: pointer;
+}
+
+.card-link{
+  color: #292f36;
+}

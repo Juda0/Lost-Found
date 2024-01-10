@@ -6,3 +6,10 @@
   color: #4dd6c6;
   cursor: pointer;
 }
+
+.mapContainer{
+  margin:20px;
+  margin-top: 0px;
+  height: 300px;
+  border: 1px solid #c8c9ca;
+}

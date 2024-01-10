@@ -1,0 +1,18 @@
+.DragChange{
+  color: #2a9d8f;
+  cursor: pointer;
+}
+.DragChangeL:hover{
+  color: #4dd6c6;
+  cursor: pointer;
+}
+
+.mapContainer{
+  margin-top: 10px;
+  height: 300px;
+  border: 1px solid #c8c9ca;
+}
+
+.popUp{
+  height: auto;
+}
