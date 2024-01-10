@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from '../../config/axiosConfig';
 import styles from "./card.module.css";
@@ -7,9 +7,6 @@ import BinIcon from "../../assets/BinIcon.svg";
 import CheckmarkIcon from "../../assets/CheckmarkIcon.svg";
 import NotClaimedIcon from "../../assets/NotClaimedIcon.svg";
 import { MDBSpinner } from 'mdb-react-ui-kit';
-
-// Post component
-import React, { useState } from 'react';
 
 const Posts = () => {
   const [apiError, setApiError] = useState();

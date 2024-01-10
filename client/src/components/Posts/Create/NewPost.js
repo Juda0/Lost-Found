@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import axios from '../../../config/axiosConfig';
 import { PostForm } from './PostForm';
 import styles from './form.module.css';
-import BackIcon from '../../../assets/BackIcon.svg';
-import { NavLink } from 'react-router-dom';
 
 const Newpost = () => {
   const [apiError, setApiError] = useState();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import axios from '../../../config/axiosConfig';
 import LostIcon from '../../../assets/LostItem.svg';
@@ -20,11 +20,7 @@ const ViewPost = () => {
   const [splitTags, setSplitTags] = useState([]);
   const { id } = useParams();
 
-  useEffect(() => {
-    fetchPost();
-  }, [id]);
-
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     try {
       const response = await axios.get(`/posts/view/${id}`);
       setPost(response.data);
@@ -37,7 +33,11 @@ const ViewPost = () => {
         setApiError('Error fetching post. Please try again later.');
       }
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchPost();
+  }, [fetchPost]);
 
   const handleButtonClick = () => {
     console.log('hit!');
@@ -97,7 +97,7 @@ const ViewPost = () => {
           </div>
 
 
-          {isLocationAvailable && (
+          {isLocationAvailable ? (
             <>
               <b><p className={styles.header}>Map</p></b>
               <ViewMap
@@ -108,12 +108,12 @@ const ViewPost = () => {
                 zoom={14}
               />
             </>
-          ) ||
+          ) : (
             <>
               <b><p className={styles.header}>Map</p></b>
               <p>Not available</p>
             </>
-          }
+          )}
 
 
         </MDBCol>
