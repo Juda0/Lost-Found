@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Make instance of axios
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
+  baseURL: process.env.REACT_APP_API_BASE_URL || 'REACT_APP_API_BASE_URL_NOT_SET',
 });
 
 // Interceptor for adding a jwt token to each request
