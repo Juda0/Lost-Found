@@ -8,6 +8,9 @@ import CheckmarkIcon from "../../assets/CheckmarkIcon.svg";
 import NotClaimedIcon from "../../assets/NotClaimedIcon.svg";
 import { MDBSpinner } from 'mdb-react-ui-kit';
 
+// Post component
+import React, { useState } from 'react';
+
 const Posts = () => {
   const [apiError, setApiError] = useState();
   const [myPosts, setMyPosts] = useState([]);
