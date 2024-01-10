@@ -101,7 +101,7 @@ const ViewPost = () => {
             <>
               <b><p className={styles.header}>Map</p></b>
               <ViewMap
-                key={Math.random()}
+                key={post.id}
                 center={[post.latitude, post.longitude]}
                 title={post.title}
                 description={post.description}
