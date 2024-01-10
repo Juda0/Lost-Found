@@ -16,6 +16,7 @@ h1{
 }
 
 .cardImg {
+  object-fit: cover;
   height: 90px;
   width: 90px; /* Set a fixed width for the square image */
   border-radius: 5px;
