@@ -14,15 +14,10 @@ export class PostController {
     this.fileLogic = new FileLogic();
   }
 
-  getAllPosts = async (req: IAuthenticatedRequest, res: Response): Promise<void> => {
+  getAllPostsWithFilters = async (req: Request, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.userId; // Use optional chaining here
-      if (userId === undefined) {
-        res.status(401).json({ error: 'Unauthorized', message: 'User not authenticated' });
-        return;
-      }
-  
-      const posts = await this.postLogic.getPosts(userId);
+      const search = req.query['search'] as string || '';
+      const posts = await this.postLogic.getAllPostsWithFilters(search);
       res.status(200).json(posts);
     } catch (error) {
       console.error(error);
@@ -56,6 +51,24 @@ export class PostController {
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Failed to fetch post', message: 'Failed to fetch post' });
+    }
+  }
+
+  getPostsWithFilters = async (req: IAuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+      const userId = req.user?.userId; // Use optional chaining here
+      if (userId === undefined) {
+        res.status(401).json({ error: 'Unauthorized', message: 'User not authenticated' });
+        return;
+      }
+  
+      const page = parseInt(req.query['page'] as string) || 1;
+      const search = req.query['search'] as string || '';
+      const posts = await this.postLogic.getPostsWithFilters(userId, page, search);
+      res.status(200).json(posts);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch posts' });
     }
   }
 

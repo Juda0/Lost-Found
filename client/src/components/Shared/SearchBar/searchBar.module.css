@@ -1,0 +1,16 @@
+.fullBar{
+    min-width: 100%;
+}
+
+.searchBarInput{
+    border-radius: 7px 0px 0px 7px;
+}
+.searchBarButton{
+    padding: 5px 10px;
+    margin-left: 0px;
+    border-radius: 0px 7px 7px 0px;
+}
+
+.searchIcon{
+    max-height: 10px;
+}

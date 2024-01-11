@@ -29,6 +29,19 @@ instance.interceptors.request.use(
       return Promise.reject(error);
     }
   );
+
+  // Interceptor for unauthorized requests
+  instance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      // Check if the error status is 401 (Unauthorized)
+      if (error.response && error.response.status === 403) {
+        // Redirect to the login page
+        window.location.href = '/login'; // Use window.location.href for a full page reload
+      }
+      return Promise.reject(error);
+    }
+  );
   
 
 export default instance;

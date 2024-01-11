@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
 import './createMap.css'
+import MapLostAndFoundIcon from '../../../assets/MapLostAndFoundIcon.svg';
+
 
 export const CreateMap = ({ center, zoom, title, description, onMarkerPositionChange }) => {
 
@@ -30,7 +32,7 @@ export const CreateMap = ({ center, zoom, title, description, onMarkerPositionCh
         delete L.Icon.Default.prototype._getIconUrl;
 
         L.Icon.Default.mergeOptions({
-            iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+            iconRetinaUrl: MapLostAndFoundIcon,
             iconUrl: require('leaflet/dist/images/marker-icon.png'),
             shadowUrl: require('leaflet/dist/images/marker-shadow.png')
         });

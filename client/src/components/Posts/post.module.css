@@ -1,0 +1,16 @@
+/* Updated styles for the modified layout */
+h1{
+    margin-top:50px;
+  }
+  
+  .custom-table {
+    width: 55%;
+    border-collapse: collapse;
+    margin: 20px;
+  }
+  
+  .custom-table th, .custom-table td {
+    border-bottom: 1px solid rgb(228, 216, 188); /* Horizontal border lines */
+    padding: 20px;
+    text-align: center;
+  }

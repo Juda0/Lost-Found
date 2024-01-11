@@ -33,14 +33,23 @@ export class PostLogic implements IPostLogic {
     }
   }
 
-  getPosts = async (userId: number) => {
+  getAllPostsWithFilters = async (search: string) => {
     try {
-      return this.postDAL.getPosts(userId);
+      return this.postDAL.getAllPostsWithFilters(search);
     } catch (error) {
       throw error;
     }
   }
 
+  getPostsWithFilters = async (userId: number, page: number, search: string) => {
+    try {
+      const skipRecords = (page - 1) * 5;
+      return this.postDAL.getPostsWithFilters(userId, skipRecords, search);
+    } catch (error) {
+      throw error;
+    }
+  }
+  
   getPostById = async (id: number) => {
     try {
       return this.postDAL.getPostById(id);

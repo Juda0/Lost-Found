@@ -30,9 +30,16 @@ router.get('/view/:id', authenticateToken, async (req: Request, res: Response) =
   await postController.getPostById(req, res);
 });
 
+
+
+// Protected route: Get all posts
+router.get('/all', async (req: Request, res: Response) => {
+  await postController.getAllPostsWithFilters(req, res);
+});
+
 // Protected route: Get all posts
 router.get('/', authenticateToken, async (req: IAuthenticatedRequest, res: Response) => {
-  await postController.getAllPosts(req, res);
+  await postController.getPostsWithFilters(req, res);
 });
 
 export default router;

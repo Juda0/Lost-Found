@@ -1,0 +1,19 @@
+.DragChange{
+    color: #2a9d8f;
+    cursor: pointer;
+  }
+  .DragChangeL:hover{
+    color: #4dd6c6;
+    cursor: pointer;
+  }
+  
+  #FindMapContainer{
+    height: 100vh;
+    width: 100vw;
+    border: 1px solid #c8c9ca;
+    z-index: 0;
+  }
+  
+  .popUp{
+    height: auto;
+  }

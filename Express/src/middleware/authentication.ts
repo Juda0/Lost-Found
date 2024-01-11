@@ -26,8 +26,17 @@ export default async function authenticateToken(req: IAuthenticatedRequest, res:
 
     req.user = { userId: decoded['userId'] };
     next();
-  } catch (error) {
+  } catch (error:any) {
+    if (error.name === 'TokenExpiredError') {
+      res.status(403).json({ error: 'Forbidden', message: 'Token expired' });
+      return;
+    } 
+    if (error.name === 'NotBeforeError') {
+      res.status(403).json({ error: 'Forbidden', message: 'Token not valid yet' });
+      return;
+    } 
     console.error('Error during token verification:', error);
     res.status(500).json({ error: 'Internal Server Error', message: 'Error during token verification' });
+    return;
   }
 }

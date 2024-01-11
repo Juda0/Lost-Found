@@ -18,7 +18,7 @@ ul li a.active:not(.no-active-color) {
   background: #f4a261;
   color: #292f36;
   padding: 20px;
-  z-index: 1;
+  z-index: 2; /* Increase z-index by 1 */
   -webkit-user-select: none;
   user-select: none;
   box-sizing: border-box;
@@ -54,7 +54,7 @@ ul li a.active:not(.no-active-color) {
   position: absolute;
   cursor: pointer;
   opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
+  z-index: 3; /* Increase z-index by 1 */
   -webkit-touch-callout: none;
 }
 
@@ -67,7 +67,7 @@ ul li a.active:not(.no-active-color) {
   position: relative;
   background: #292f36;
   border-radius: 3px;
-  z-index: 1;
+  z-index: 2; /* Increase z-index by 1 */
   transform-origin: 4px 0px;
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -86,7 +86,7 @@ ul li a.active:not(.no-active-color) {
   opacity: 1;
   transform: rotate(45deg) translate(3px,-1px);
   background: #f4a261;
-  z-index: 2; /* Increase z-index for the close icon */
+  z-index: 3; /* Increase z-index by 1 */
 }
 
 .menu-container input:checked ~ span:nth-child(4) {
@@ -138,7 +138,7 @@ ul li a.active:not(.no-active-color) {
     transform-origin: 0% 0%;
     transform: translateX(100%); /* Adjust to 100% to hide the menu initially */
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-    z-index: 1; /* Increase z-index */
+    z-index: 2; /* Increase z-index by 1 */
   }
 
   .menu-container input:checked ~ .menu {

@@ -1,37 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from '../../config/axiosConfig';
-import styles from "./card.module.css";
-import LostIcon from "../../assets/LostItem.svg";
-import BinIcon from "../../assets/BinIcon.svg";
-import CheckmarkIcon from "../../assets/CheckmarkIcon.svg";
-import NotClaimedIcon from "../../assets/NotClaimedIcon.svg";
+import styles from "./post.module.css";
 import { MDBSpinner } from 'mdb-react-ui-kit';
-
+import pagination from '../Utils/PaginationCalculator';
+import PostListPagination from '../Shared/PostListPagination/PostListPagination';
+import SearchBar from '../Shared/SearchBar/Searchbar';
+import PostCard from './PostCard/PostCard';
 const Posts = () => {
-  const [apiError, setApiError] = useState();
+  const [errorMessage, setErrorMessage] = useState();
   const [myPosts, setMyPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagesRequired, setPagesRequired] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    setErrorMessage(""); // Clear error
+  },[]);
 
   useEffect(() => {
     fetchAllPosts();
-  }, []);
+  }, [currentPage, searchTerm]);
+
+  useEffect(() => {
+    paginationCalculations();
+  }, [totalRecords]);
+
+  const paginationCalculations = () => {{
+    setPagesRequired(pagination.calculateTotalPages(totalRecords));
+  }}
 
   // Function to fetch all posts
   const fetchAllPosts = async () => {
-    setApiError(""); // Clear error
+    setErrorMessage(""); // Clear error
     // Make an Axios request using axiosConfig
     axios
-      .get('/posts')
+      .get(`/posts?page=${currentPage}&search=${searchTerm}`)
       .then((response) => {
-        setMyPosts(response.data); // Update the state with the response data
+        setMyPosts(response.data.posts); // Update the state with the response data
+        setTotalRecords(response.data.totalRecords);
       })
       .catch((error) => {
-        setApiError('Your posts could not be fetched.');
-        console.error(error);
+        setErrorMessage('Your posts could not be fetched.');
+      })
+      .finally(() => {
+        // stop loading animation after request regardless of result
+        setLoading(false);
       });
   };
 
-  if(myPosts.length === 0 && !apiError) {
+  const handleFirstPageButtonClick = () => {
+    setCurrentPage(1);
+  };
+  
+  const handlePreviousPageButtonClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  
+  const handleNextPageButtonClick = () => {
+    if (currentPage < pagesRequired) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  
+  const handleLastPageButtonClick = () => {
+    setCurrentPage(pagesRequired);
+  };
+  
+  const getPreviousPageNumber = () => {
+    if (currentPage > 1) {
+      return currentPage - 1;
+    }
+    return null;
+  };
+  
+  const getNextPageNumber = () => {
+    if (currentPage < pagesRequired) {
+      return currentPage + 1;
+    }
+    return null;
+  };
+
+  if(loading && !errorMessage) {
     return(
       <div className="d-flex align-items-center justify-content-center">
       <MDBSpinner className='mx-2' color='warning'>
@@ -42,14 +96,21 @@ const Posts = () => {
     )
   }
 
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+    setCurrentPage(1);
+  }
+  
   return (
     <>
       <center>
-        <p className={styles['error-message']}>{apiError}</p>
+        <p className={styles['error-message']}>{errorMessage}</p>
         <NavLink to="/posts/new" className={styles['no-active-color']}>
           <button>+ New Post</button>
         </NavLink>
         <h1>My posts</h1>
+     <SearchBar onSearch={handleSearch}/>
+
         <table className={styles['custom-table']}>
           <thead>
             <tr>
@@ -60,34 +121,22 @@ const Posts = () => {
           </thead>
           <tbody>
             {myPosts.map((post) => (
-              <tr key={post.id}>
-                <td>
-                <NavLink to={`/posts/${post.id}/view`} className={styles['card-link']}>
-                  <div className={styles['cardContent']}>
-                    {/* Default post image */}
-                    {post.imagePath ? (
-                      <img className={styles['cardImg']} src={process.env.REACT_APP_API_BASE_URL + post.imagePath} alt="Avatar" />
-                    ) : (
-                      <img className={styles['cardImg']} src={LostIcon} alt="Avatar" />
-                    )}
-                    <h2 className={styles['cardTitle']}>{post.title}</h2>
-                  </div>
-                  </NavLink>
-                </td>
-                <td>
-                  {post.status === "OWNER_FOUND" ? (
-                    <img className={styles['statusIcon']} src={CheckmarkIcon} alt="Green Checkmark" />
-                  ) : (
-                    <img className={styles['statusIcon']} src={NotClaimedIcon} alt="Not Claimed Yet" />
-                  )}
-                </td>
-                <td>
-                  <img className={styles['binIcon']} src={BinIcon} alt="Bin Icon" />
-                </td>
-              </tr>
+              <PostCard key={post.id} post={post} />
             ))}
           </tbody>
         </table>
+        <nav aria-label='...' className='d-flex justify-content-center'>
+        <PostListPagination
+          currentPage={currentPage}
+          pagesRequired={pagesRequired}
+          handleFirstPageButtonClick={handleFirstPageButtonClick}
+          handlePreviousPageButtonClick={handlePreviousPageButtonClick}
+          handleNextPageButtonClick={handleNextPageButtonClick}
+          handleLastPageButtonClick={handleLastPageButtonClick}
+          getPreviousPageNumber={getPreviousPageNumber}
+          getNextPageNumber={getNextPageNumber}
+        />
+        </nav>
       </center>
     </>
   );

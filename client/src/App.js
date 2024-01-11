@@ -7,6 +7,7 @@ import NoMatch from './components/NoMatch/NoMatch.js'
 import { Routes, Route } from 'react-router-dom'
 import Newpost from "./components/Posts/Create/NewPost.js"
 import ViewPost from "./components/Posts/View/ViewPost.js"
+import Find from "./components/Posts/Find/Find.js"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 
     <Routes>
           <Route path="/" element={ <Home />} />
+          <Route path="/find" element={ <Find />} />
           <Route path="/posts" element={ <Posts />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
