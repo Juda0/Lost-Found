@@ -12,7 +12,6 @@ import {
     MDBCardBody,
     MDBCardTitle,
     MDBCardText,
-    MDBBtn
 } from 'mdb-react-ui-kit';
 import { NavLink } from 'react-router-dom';
 
@@ -24,9 +23,7 @@ export const FindMap = ({ posts }) => {
         handleGetLocation()
             .then((location) => {
                 setMapCenter([location.latitude, location.longitude]);
-                console.log(randomKey)
                 setRandomKey(uuidv4());
-                console.log(randomKey)
             })
             .catch((error) => {
                 console.error('Error getting location:', error);
