@@ -4,6 +4,7 @@ import { MDBSpinner, MDBCol, MDBRow, } from 'mdb-react-ui-kit';
 import SearchBar from '../../Shared/SearchBar/Searchbar';
 import axios from '../../../config/axiosConfig';
 import styles from './find.module.css';
+import io from 'socket.io-client';
 
 const Find = () => {
     const [errorMessage, setErrorMessage] = useState();
@@ -11,6 +12,26 @@ const Find = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const isInitialRender = useRef(true);
+    const [socket, setSocket] = useState(null);
+
+    // Establish websocket connection
+    useEffect(() => {
+        const newSocket = io(process.env.REACT_APP_API_BASE_URL);
+        setSocket(newSocket);
+    
+    }, []);
+    
+    // Listen to new-post event
+    useEffect(() => {
+        if (socket) {
+            // Listen for incoming messages
+            socket.on('new-post', (data) => {
+                // Update the state with the received message
+                setMyPosts(prevPosts => [...prevPosts, data.post]);
+                console.log('new post recieved from ws:' + JSON.stringify(data.post));
+            });
+        }
+    }, [socket]);
 
     const fetchAllPosts = useCallback(async () => {
         setErrorMessage(""); // Clear error

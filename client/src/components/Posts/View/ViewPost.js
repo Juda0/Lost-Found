@@ -39,10 +39,6 @@ const ViewPost = () => {
     fetchPost();
   }, [fetchPost]);
 
-  const handleButtonClick = () => {
-    console.log('hit!');
-  };
-
   const isLocationAvailable = post.latitude && post.longitude;
 
   return (
@@ -74,7 +70,6 @@ const ViewPost = () => {
                 <>
                   <img src={ownerNotFound} className={styles['ownerStatusIcon']} alt="Owner not found" />
                   <p><b>Owner not found</b></p><br></br>
-                  <button className='m-0' onClick={handleButtonClick}>Contact finder</button>
                 </>
               ) : (
                 <>
@@ -95,7 +90,6 @@ const ViewPost = () => {
               </>
             )}
           </div>
-
 
           {isLocationAvailable ? (
             <>

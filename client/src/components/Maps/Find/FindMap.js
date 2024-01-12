@@ -46,7 +46,7 @@ export const FindMap = ({ posts }) => {
     console.log(mapCenter)
     console.log(posts)
     return (
-        <MapContainer center={mapCenter} key={randomKey} zoom={11} id='FindMapContainer'>
+        <MapContainer center={mapCenter} key={randomKey} zoom={11} zoomControl={false} id='FindMapContainer'>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
