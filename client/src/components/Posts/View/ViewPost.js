@@ -7,6 +7,7 @@ import styles from './view.module.css';
 import ownerNotFound from '../../../assets/OwnerNotFound.svg';
 import ownerFound from '../../../assets/OwnerFound.svg';
 import { ViewMap } from '../../Maps/View/ViewMap';
+import { Claim } from '../Claim/Claim';
 import { splitByComma } from '../../Utils/CommaSpllitter';
 import { TagDisplay } from '../../Utils/TagDisplay';
 import {
@@ -43,6 +44,7 @@ const ViewPost = () => {
 
   return (
     <>
+    <Claim />
       <MDBRow className='m-0 mt-5'>
         <MDBCol md='3'></MDBCol>
         <MDBCol md='6' size='12' className={styles.wrap}>
