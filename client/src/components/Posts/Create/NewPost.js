@@ -12,7 +12,6 @@ const Newpost = () => {
       // Establish WebSocket connection
       const newSocket = io(process.env.REACT_APP_API_BASE_URL);
       setSocket(newSocket);
-  
   }, []);
 
   const handleFormSubmit = async (formData) => {
@@ -21,6 +20,14 @@ const Newpost = () => {
       window.location.href = '/posts/';
     } catch (error) {
       console.error('Error submitting form:', error);
+    }
+  };
+
+  const handleErrorMessage = async (error) => {
+    try {
+      setApiError(error)
+    } catch (error) {
+      console.error('Error handling error message. ', error);
     }
   };
 
@@ -61,8 +68,9 @@ const Newpost = () => {
     <>
       <div className={styles.newPostContainer}>
         <div className={styles.postFormContainer}>
+          <PostForm onFormSubmit={handleFormSubmit} onErrorMessage={handleErrorMessage}/>
           <p className="error-message">{apiError}</p>
-          <PostForm onFormSubmit={handleFormSubmit} />
+
         </div>
       </div>
     </>

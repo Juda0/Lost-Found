@@ -6,7 +6,7 @@ import { CreateMap } from '../../Maps/Create/CreateMap'
 import BackIcon from '../../../assets/BackIcon.svg';
 import { NavLink } from 'react-router-dom';
 
-export const PostForm = ({ onFormSubmit }) => {
+export const PostForm = ({ onFormSubmit, onErrorMessage  }) => {
   const [zoomValue, setZoomValue] = useState(6);
   const [mapCenter, setMapCenter] = useState([52.2129919, 5.2793703]); // Initial center position
   const [formData, setFormData] = useState({
@@ -24,6 +24,7 @@ export const PostForm = ({ onFormSubmit }) => {
       latitude: newPosition.lat,
       longitude: newPosition.lng,
     });
+    onErrorMessage(''); // Clear error
   };
 
   const [imagePreview, setImagePreview] = useState(null);
@@ -86,6 +87,15 @@ export const PostForm = ({ onFormSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+     // Regex to check for two floats separated by a comma
+     const coordRegex = /^[-+]?\d*\.?\d+,\s*[-+]?\d*\.?\d+$/;
+
+     // Check if the coordinates are in the correct format
+     if (!coordRegex.test(`${formData.latitude || ''}${coordSeperator}${formData.longitude || ''}`)) {
+       onErrorMessage('Please enter valid coordinates by dragging the marker or clicking the GPS button.');
+       return; // Prevent form submission
+     }
     
      // Transform the array of tags into a comma-separated string
      const tagsToString = formData.tags.join(',');
@@ -125,7 +135,7 @@ export const PostForm = ({ onFormSubmit }) => {
         <label className={styles['input-with-icon-label']}>
           Location:
           <div className={styles["input-with-icon"]}>
-            <input style={{color: "gray", backgroundColor: "transparent"}} type="text" value={`${formData.latitude || ''}${coordSeperator} ${formData.longitude || ''}`} readOnly />
+            <input required placeholder='Drag the marker icon or click the GPS button to set location' style={{color: "gray", backgroundColor: "transparent"}} type="text" value={`${formData.latitude || ''}${coordSeperator} ${formData.longitude || ''}`} readOnly />
             <img onClick={handleGetLocation} className={styles["locationIcon"]} src={locationPin} alt="Get Location" />
           </div>
         </label>
@@ -139,7 +149,7 @@ export const PostForm = ({ onFormSubmit }) => {
           value={formData.tags}
           onChange={(tags) => setFormData({ ...formData, tags })}
           name="tags"
-          placeHolder="Jewlery"
+          placeHolder="Jewelery"
         />
       </label>
       <em>press enter/backspace to add or remove tags</em>
