@@ -16,7 +16,7 @@ export const ViewMap = ({ center, zoom, title, description, onMarkerPositionChan
 
         L.Icon.Default.mergeOptions({
             iconRetinaUrl: MapLostAndFoundIcon,
-            iconUrl: require('leaflet/dist/images/marker-icon.png'),
+            iconUrl: MapLostAndFoundIcon,
             shadowUrl: require('leaflet/dist/images/marker-shadow.png')
         });
     }, []);

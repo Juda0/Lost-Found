@@ -38,7 +38,7 @@ export const FindMap = ({ posts }) => {
             // iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
             iconRetinaUrl: MapLostAndFoundIcon,
 
-            iconUrl: require('leaflet/dist/images/marker-icon.png'),
+            iconUrl: MapLostAndFoundIcon,
             shadowUrl: require('leaflet/dist/images/marker-shadow.png')
         });
     }, []);
