@@ -31,30 +31,57 @@ jobs:
         run: npm run build
         working-directory: Express
 
-      - name: Test
-        run: npm run testGithub
+      - name: Start Express server
+        run: npm start &
         working-directory: Express
+
+      - name: Wait for Express server to start
+        run: sleep 10  # Adjust the sleep time based on your application startup time
+
+      - name: Install Dependencies for Client
+        run: npm ci
+        working-directory: client
+
+      - name: Start client application
+        run: npm start &
+        working-directory: client
+
+      - name: Wait for client application to start
+        run: sleep 10  # Adjust the sleep time based on your application startup time
+
+      - name: Run Cypress tests
+        run: npx cypress run
+        working-directory: client
 
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image for Express
         with:
-            image: juda0/lostfounddockerhub
-            tags: expresslatest
-            registry: docker.io
-            dockerfile: Express/Dockerfile
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
+          image: juda0/lostfounddockerhub
+          tags: expresslatest
+          registry: docker.io
+          dockerfile: Express/Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
         env:
-            JWT_SECRET: ${{ env.JWT_SECRET }}
-            DATABASE_URL: ${{ env.DATABASE_URL }}
+          JWT_SECRET: ${{ env.JWT_SECRET }}
+          DATABASE_URL: ${{ env.DATABASE_URL }}
 
       - name: Build & push Docker image for Client
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-            image: juda0/lostfoundclientdockerhub
-            tags: clientlatest
-            registry: docker.io
-            dockerfile: client/Dockerfile
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-          
+          image: juda0/lostfoundclientdockerhub
+          tags: clientlatest
+          registry: docker.io
+          dockerfile: client/Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Stop Express server
+        run: npm stop
+        working-directory: Express
+        if: always()  # Ensure the server is stopped even if tests fail
+
+      - name: Stop client application
+        run: npm stop
+        working-directory: client
+        if: always()  #
