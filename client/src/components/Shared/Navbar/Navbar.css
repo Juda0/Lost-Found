@@ -87,6 +87,7 @@ ul li a.active:not(.no-active-color) {
   transform: rotate(45deg) translate(3px,-1px);
   background: #f4a261;
   z-index: 3; /* Increase z-index by 1 */
+  pointer-events: none;
 }
 
 .menu-container input:checked ~ span:nth-child(4) {
@@ -163,6 +164,7 @@ ul li a.active:not(.no-active-color) {
   /* Burger menu */
   .menu-container span {
     display: none;
+    z-index: 0;
   }
 
   .menu {

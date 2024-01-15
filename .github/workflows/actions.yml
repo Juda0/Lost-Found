@@ -75,13 +75,3 @@ jobs:
           dockerfile: client/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Stop Express server
-        run: npm stop
-        working-directory: Express
-        if: always()  # Ensure the server is stopped even if tests fail
-
-      - name: Stop client application
-        run: npm stop
-        working-directory: client
-        if: always()  #
