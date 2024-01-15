@@ -33,7 +33,7 @@ export const CreateMap = ({ center, zoom, title, description, onMarkerPositionCh
 
         L.Icon.Default.mergeOptions({
             iconRetinaUrl: MapLostAndFoundIcon,
-            iconUrl: require('leaflet/dist/images/marker-icon.png'),
+            iconUrl: MapLostAndFoundIcon,
             shadowUrl: require('leaflet/dist/images/marker-shadow.png')
         });
     }, []);

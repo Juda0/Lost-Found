@@ -6,14 +6,14 @@ describe('The Login Page', () => {
     cy.request({
       method: 'GET',
       url: '/database/reset',
-      baseurl: 'http://localhost:4000', // Corrected the base URL format
+      baseurl: 'http://localhost:4000/', // Corrected the base URL format
     });
 
     // Seed a user and post in the DB that we can control from our tests
     cy.request({
       method: 'GET',
       url: '/database/seed',
-      baseurl: 'http://localhost:4000',
+      baseurl: 'http://localhost:4000/',
     });
 
     // Basic data that gets seeded:

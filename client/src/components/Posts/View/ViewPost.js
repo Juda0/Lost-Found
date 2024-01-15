@@ -7,6 +7,7 @@ import styles from './view.module.css';
 import ownerNotFound from '../../../assets/OwnerNotFound.svg';
 import ownerFound from '../../../assets/OwnerFound.svg';
 import { ViewMap } from '../../Maps/View/ViewMap';
+import { Claim } from '../Claim/Claim';
 import { splitByComma } from '../../Utils/CommaSpllitter';
 import { TagDisplay } from '../../Utils/TagDisplay';
 import {
@@ -39,14 +40,11 @@ const ViewPost = () => {
     fetchPost();
   }, [fetchPost]);
 
-  const handleButtonClick = () => {
-    console.log('hit!');
-  };
-
   const isLocationAvailable = post.latitude && post.longitude;
 
   return (
     <>
+    <Claim />
       <MDBRow className='m-0 mt-5'>
         <MDBCol md='3'></MDBCol>
         <MDBCol md='6' size='12' className={styles.wrap}>
@@ -74,7 +72,6 @@ const ViewPost = () => {
                 <>
                   <img src={ownerNotFound} className={styles['ownerStatusIcon']} alt="Owner not found" />
                   <p><b>Owner not found</b></p><br></br>
-                  <button className='m-0' onClick={handleButtonClick}>Contact finder</button>
                 </>
               ) : (
                 <>
@@ -95,7 +92,6 @@ const ViewPost = () => {
               </>
             )}
           </div>
-
 
           {isLocationAvailable ? (
             <>
