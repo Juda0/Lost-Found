@@ -4,8 +4,8 @@ import { Post } from 'models/post';
 
 export class PostDAL implements IPostDAL {
   prisma: PrismaClient;
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma;
+  constructor() {
+    this.prisma = new PrismaClient();
   }
 
   async getAllPostsWithFilters(search: string) {

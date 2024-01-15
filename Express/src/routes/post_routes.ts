@@ -6,14 +6,13 @@ import { PostLogic } from '../logic/post_logic';
 import { PostDAL } from '../dal/post_dal';
 import { IAuthenticatedRequest } from '../interfaces/middleware/IAuthenticatedRequest';
 import multer from 'multer'
-import { PrismaClient } from '@prisma/client';
 
 // Set up Multer to handle file uploads
 const storage = multer.memoryStorage(); // Use memory storage for simplicity; adjust as needed
 const upload = multer({ storage: storage });
 
 const router: Router = express.Router();
-const postDAL = new PostDAL(new PrismaClient());
+const postDAL = new PostDAL();
 const postLogic = new PostLogic(postDAL);
 const postController = new PostController(postLogic);
 

@@ -12,8 +12,8 @@ import { User } from '../models/user';
 export class UserDAL implements IUserDAL {
   prisma: PrismaClient;
 
-  constructor() {
-    this.prisma = new PrismaClient();
+  constructor(prisma?: PrismaClient) {
+    this.prisma = prisma || new PrismaClient();
   }
 
   createUser = async (username: string, email: string, password: string): Promise<User> => {
