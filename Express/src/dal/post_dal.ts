@@ -5,11 +5,8 @@ import { Post } from 'models/post';
 export class PostDAL implements IPostDAL {
   prisma: PrismaClient;
 
-  // This is needed to allow optional injection of the PrismaClient for testing
-  constructor();
-  constructor(prisma: PrismaClient);
-  constructor(prisma?: PrismaClient) {
-    this.prisma = prisma || new PrismaClient();
+  constructor(prisma: PrismaClient = new PrismaClient()) {
+    this.prisma = prisma;
   }
 
   async getAllPostsWithFilters(search: string) {
