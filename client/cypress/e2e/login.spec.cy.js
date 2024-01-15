@@ -1,29 +1,35 @@
 describe('The Login Page', () => {
   let currentUser; // Declare currentUser in the outer scope
 
+   // Basic data that gets seeded:
+   currentUser = {
+    username: 'john_doe',
+    email: 'john.doe@example.com',
+    password: 'password'
+  };
+  
   beforeEach(() => {
     // Reset all data in the DB to a known state 
     cy.request({
       method: 'GET',
-      url: '/database/reset',
-      baseurl: 'http://localhost:4000/', // Corrected the base URL format
+      url: 'http://localhost:4000/database/reset',
+      baseurl: 'http://localhost:4000', // Corrected the base URL format
     });
 
     // Seed a user and post in the DB that we can control from our tests
     cy.request({
-      method: 'GET',
-      url: '/database/seed',
-      baseurl: 'http://localhost:4000/',
+      method: 'POST',
+      url: 'http://localhost:4000/user/register',
+      body: {
+        username: currentUser.username,
+        email: currentUser.email,
+        password: currentUser.password
+      },
     });
 
-    // Basic data that gets seeded:
-    currentUser = {
-      username: 'john_doe',
-      email: 'john.doe@example.com',
-      password: 'password'
-    };
+   
 
-    //Start at homepage
+    // Start at homepage
     cy.visit('/')
   });
 
