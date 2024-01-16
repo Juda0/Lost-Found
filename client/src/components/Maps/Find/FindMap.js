@@ -68,7 +68,9 @@ export const FindMap = ({ posts }) => {
                                     {post.description}
                                 </MDBCardText>
                                 <div className='d-flex align-items-center justify-content-center'>
-                                    <button className='mb-0'><b><NavLink to={`/posts/${post.id}/view`} className='text-decoration-none' style={{color: 'white'}}>More info</NavLink></b></button>
+                                <NavLink to={`/posts/${post.id}/view`} className='text-decoration-none' style={{color: 'white'}}>
+                                    <button className='mb-0'><b>More info</b></button>
+                                    </NavLink>
                                 </div>
                             </MDBCardBody>
                         </MDBCard>
