@@ -44,7 +44,6 @@ const ViewPost = () => {
 
   return (
     <>
-    <Claim />
       <MDBRow className='m-0 mt-5'>
         <MDBCol md='3'></MDBCol>
         <MDBCol md='6' size='12' className={styles.wrap}>
@@ -67,11 +66,14 @@ const ViewPost = () => {
                 )}
               </div>
             </MDBCol>
+            
             <MDBCol md='6' size='12' className='text-center'>
               {post.status === 'OWNER_NOT_FOUND' ? (
                 <>
                   <img src={ownerNotFound} className={styles['ownerStatusIcon']} alt="Owner not found" />
-                  <p><b>Owner not found</b></p><br></br>
+                  <p><b>Owner not found</b></p>
+                  <Claim postId={id}/>
+                  
                 </>
               ) : (
                 <>
