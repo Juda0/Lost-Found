@@ -17,6 +17,11 @@ const Posts = () => {
   const [totalRecords, setTotalRecords] = useState(0);
   const [loading, setLoading] = useState(true);
   
+  const removeDeletedPostFromList = (postId) => {
+    // Remove the post from the list
+    setMyPosts(myPosts.filter(post => post.id !== postId));
+  };
+
   useEffect(() => {
     setErrorMessage(""); // Clear error
   },[]);
@@ -120,7 +125,7 @@ const Posts = () => {
           </thead>
           <tbody>
             {myPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard key={post.id} post={post} onDelete={() => removeDeletedPostFromList(post.id)} />
             ))}
           </tbody>
         </table>

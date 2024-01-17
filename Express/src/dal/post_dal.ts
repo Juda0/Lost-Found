@@ -11,7 +11,7 @@ export class PostDAL implements IPostDAL {
   async getAllPostsWithFilters(search: string) {
     try {
       const a = await this.prisma.post.findMany({
-        where: { 
+        where: {
           OR: [
             { title: { contains: search } },
             { description: { contains: search } },
@@ -64,7 +64,7 @@ export class PostDAL implements IPostDAL {
     }
   }
 
-  async getPostById( id: number) {
+  async getPostById(id: number) {
     try {
       return await this.prisma.post.findFirst({
         where: { id },
@@ -82,6 +82,17 @@ export class PostDAL implements IPostDAL {
     } catch (error) {
       throw error;
     }
+  }
+
+
+  async deletePost(id: number, userId: number) {
+    try {
+      await this.prisma.post.delete({
+        where: { id, userId },
+        });
+      } catch (error) {
+        throw error;
+      }
   }
 }
 
