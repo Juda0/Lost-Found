@@ -27,7 +27,7 @@ const SearchBar = ({onSearch}) => {
                     }
                 }}
             />
-            <button className={styles.searchBarButton} onClick={handleSearchSubmit}><img className={styles.searchIcon} src={whiteSearchIcon} /></button>
+            <button className={styles.searchBarButton} onClick={handleSearchSubmit}><img className={styles.searchIcon} src={whiteSearchIcon} alt='Search icon' /></button>
         </div>
     );
 };

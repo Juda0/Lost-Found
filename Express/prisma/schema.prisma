@@ -48,6 +48,7 @@ model Claim {
   updatedAt DateTime @updatedAt
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  @@unique([postId, ownerId])
 }
 
 enum PostStatus {

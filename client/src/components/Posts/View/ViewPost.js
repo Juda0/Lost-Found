@@ -10,17 +10,25 @@ import { ViewMap } from '../../Maps/View/ViewMap';
 import { Claim } from '../Claim/Claim';
 import { splitByComma } from '../../Utils/CommaSpllitter';
 import { TagDisplay } from '../../Utils/TagDisplay';
+import { BootstrapAlert } from '../../Shared/Alerts/BootstrapAlert';
+
 import {
   MDBRow,
   MDBCol
 } from 'mdb-react-ui-kit';
 
+
 const ViewPost = () => {
   const [post, setPost] = useState({});
   const [apiError, setApiError] = useState('');
   const [splitTags, setSplitTags] = useState([]);
+  const [claimSuccess, setClaimSuccess] = useState(false); // State to track claim success
   const { id } = useParams();
 
+  const handleClaimSuccess = () => {
+    setClaimSuccess(true);
+  };
+  
   const fetchPost = useCallback(async () => {
     try {
       const response = await axios.get(`/posts/view/${id}`);
@@ -44,7 +52,9 @@ const ViewPost = () => {
 
   return (
     <>
-    <Claim />
+    {claimSuccess && (
+        <BootstrapAlert message={'Successfully sent claim!'} variantValue={'success'} />
+      )}
       <MDBRow className='m-0 mt-5'>
         <MDBCol md='3'></MDBCol>
         <MDBCol md='6' size='12' className={styles.wrap}>
@@ -67,11 +77,14 @@ const ViewPost = () => {
                 )}
               </div>
             </MDBCol>
+            
             <MDBCol md='6' size='12' className='text-center'>
               {post.status === 'OWNER_NOT_FOUND' ? (
                 <>
                   <img src={ownerNotFound} className={styles['ownerStatusIcon']} alt="Owner not found" />
-                  <p><b>Owner not found</b></p><br></br>
+                  <p><b>Owner not found</b></p>
+                  <Claim postId={id} onClaimSuccess={handleClaimSuccess}/>
+                  
                 </>
               ) : (
                 <>
