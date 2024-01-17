@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import axios from '../../../config/axiosConfig';
 import Form from 'react-bootstrap/Form'
-
 import Badge from 'react-bootstrap/Badge'
 
-export const Claim = ({ postId }) => {
+export const Claim = ({ postId, onClaimSuccess }) => {
   const [inputText, setInputText] = useState("");
   const [characterMinimum] = useState(20);
   // event handler
@@ -23,7 +22,7 @@ export const Claim = ({ postId }) => {
     axios.post('/claim/create', { postId, message })
       .then(response => {
         // Handle success
-        console.log('Created claim: ' + JSON.stringify(response.data))
+        onClaimSuccess();
         handleClose();
       })
       .catch(error => {
