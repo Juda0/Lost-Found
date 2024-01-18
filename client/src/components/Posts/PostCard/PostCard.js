@@ -5,8 +5,24 @@ import LostIcon from '../../../assets/LostItem.svg';
 import CheckmarkIcon from '../../../assets/CheckmarkIcon.svg';
 import NotClaimedIcon from '../../../assets/NotClaimedIcon.svg';
 import BinIcon from '../../../assets/BinIcon.svg';
+import axios from '../../../config/axiosConfig';
 
-const PostCard = ({ post }) => {
+
+const PostCard = ({ post, onDelete }) => {
+
+
+    const deletePost = (postId) => {
+        axios.post('/posts/delete', { postId })
+            .then(response => {
+                onDelete()
+                console.log(response.data.message);
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error deleting post:', error);
+            });
+    };
+
     return (
         <tr key={post.id}>
             <td>
@@ -30,7 +46,7 @@ const PostCard = ({ post }) => {
                 )}
             </td>
             <td>
-                <img className={styles['binIcon']} src={BinIcon} alt="Bin Icon" />
+                <img className={styles['binIcon']} onClick={() => deletePost(post.id)} src={BinIcon} alt="Bin Icon" />
             </td>
         </tr>
     );

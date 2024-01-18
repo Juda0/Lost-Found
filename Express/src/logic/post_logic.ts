@@ -85,4 +85,12 @@ export class PostLogic implements IPostLogic {
       throw error;
     }
   }
+
+  deletePost = async (id: number, userId: number) => {
+    try {
+      return this.postDAL.deletePost(id, userId);
+    } catch (error) {
+      throw error;
+    }
+  }
 }

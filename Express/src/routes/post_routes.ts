@@ -25,6 +25,12 @@ router.post('/create', authenticateToken,  upload.single('image'), async (req: I
   await postController.createPost(req, res);
 });
 
+// Protected route: Delete a post
+router.post('/delete', authenticateToken, async (req: IAuthenticatedRequest, res: Response) => {
+  await postController.deletePost(req, res);
+});
+
+
 // Protected route: Get post by id
 router.get('/view/:id', authenticateToken, async (req: Request, res: Response) => {
   await postController.getPostById(req, res);
