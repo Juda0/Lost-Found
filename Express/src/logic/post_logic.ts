@@ -35,7 +35,7 @@ export class PostLogic implements IPostLogic {
 
   getAllPostsWithFilters = async (search: string) => {
     try {
-      return this.postDAL.getAllPostsWithFilters(search);
+      return await this.postDAL.getAllPostsWithFilters(search);
     } catch (error) {
       throw error;
     }
@@ -44,7 +44,7 @@ export class PostLogic implements IPostLogic {
   getPostsWithFilters = async (userId: number, page: number, search: string) => {
     try {
       const skipRecords = (page - 1) * 5;
-      return this.postDAL.getPostsWithFilters(userId, skipRecords, search);
+      return await this.postDAL.getPostsWithFilters(userId, skipRecords, search);
     } catch (error) {
       throw error;
     }
@@ -52,7 +52,7 @@ export class PostLogic implements IPostLogic {
   
   getPostById = async (id: number) => {
     try {
-      return this.postDAL.getPostById(id);
+      return await this.postDAL.getPostById(id);
     } catch (error) {
       throw error;
     }
