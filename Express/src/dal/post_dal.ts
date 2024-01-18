@@ -12,6 +12,7 @@ export class PostDAL implements IPostDAL {
     try {
       const a = await this.prisma.post.findMany({
         where: {
+          status: 'OWNER_NOT_FOUND',
           OR: [
             { title: { contains: search } },
             { description: { contains: search } },

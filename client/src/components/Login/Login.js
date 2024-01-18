@@ -39,20 +39,21 @@ const Login = () => {
       e.preventDefault();
       setError(null); // Clear any previous error
 
-      try {
-        const token = await userLogin({ email, password });
-        if (token) {
-          localStorage.setItem('authToken', token);
-          navigate('/posts');
-          console.log('You are now logged in!');
+        try {
+          const token = await userLogin({ email, password });
+          if (token) {
+            localStorage.setItem('authToken', token);
+            navigate('/posts');
+            console.log('You are now logged in!');
+            window.location.reload(); // Simulate pressing F5 to refresh the page
+          }
+        } catch (error) {
+          setError(error.message);
         }
-      } catch (error) {
-        setError(error.message);
-      }
-    };
+        };
 
 
-    // Navigate to the registration page when the "Register" button is clicked
+      // Navigate to the registration page when the "Register" button is clicked
     const handleRegisterClick = () => {
       navigate('/register')
     };

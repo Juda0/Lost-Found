@@ -11,6 +11,7 @@ import { Claim } from '../Claim/Claim';
 import { splitByComma } from '../../Utils/CommaSpllitter';
 import { TagDisplay } from '../../Utils/TagDisplay';
 import { BootstrapAlert } from '../../Shared/Alerts/BootstrapAlert';
+import { OpenClaimsForPost } from '../Claim/OpenClaimsForPost'
 
 import {
   MDBRow,
@@ -22,12 +23,17 @@ const ViewPost = () => {
   const [post, setPost] = useState({});
   const [apiError, setApiError] = useState('');
   const [splitTags, setSplitTags] = useState([]);
-  const [claimSuccess, setClaimSuccess] = useState(false); // State to track claim success
+  const [claimSuccessAlert, setClaimSuccessAlert] = useState(false); // State to track claim success
   const { id } = useParams();
 
-  const handleClaimSuccess = () => {
-    setClaimSuccess(true);
+  const handleClaimSuccessAlert = () => {
+    setClaimSuccessAlert(true);
   };
+
+  const handleOwnerFound = () => {
+    setPost({ ...post, status: 'OWNERFOUND' })
+  };
+  
   
   const fetchPost = useCallback(async () => {
     try {
@@ -52,7 +58,7 @@ const ViewPost = () => {
 
   return (
     <>
-    {claimSuccess && (
+    {claimSuccessAlert && (
         <BootstrapAlert message={'Successfully sent claim!'} variantValue={'success'} />
       )}
       <MDBRow className='m-0 mt-5'>
@@ -83,7 +89,7 @@ const ViewPost = () => {
                 <>
                   <img src={ownerNotFound} className={styles['ownerStatusIcon']} alt="Owner not found" />
                   <p><b>Owner not found</b></p>
-                  <Claim postId={id} onClaimSuccess={handleClaimSuccess}/>
+                  <Claim postId={id} onClaimSuccess={handleClaimSuccessAlert}/>
                   
                 </>
               ) : (
@@ -105,6 +111,10 @@ const ViewPost = () => {
               </>
             )}
           </div>
+          {post.status === 'OWNER_NOT_FOUND' && (
+              <OpenClaimsForPost postId={id} onOwnerFound={handleOwnerFound} />
+            )}
+
 
           {isLocationAvailable ? (
             <>

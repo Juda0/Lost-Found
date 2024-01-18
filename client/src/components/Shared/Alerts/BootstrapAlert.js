@@ -16,8 +16,8 @@ export const BootstrapAlert = ({ message, variantValue}) => {
   }, []);
 
   return (
-    <Fade in={show} mountOnEnter style={{pointerEvents:'none', position: 'fixed', width: '100vw'}}>
-      <div style={{ pointerEvents:'none', zIndex: '0', width: '100vw', textAlign: 'center'}}>
+    <Fade in={show} mountOnEnter style={{ pointerEvents: 'none', position: 'fixed', top: '0', left: '0', width: '100vw', zIndex: '9999' }}>
+      <div style={{ pointerEvents: 'none', width: '100%', textAlign: 'center' }}>
         <Alert variant={variantValue}>
           <b>{message}</b>
         </Alert>

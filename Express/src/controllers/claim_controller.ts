@@ -48,4 +48,78 @@ export class ClaimController {
       }
     }
   }
+
+  getClaimsByPostId = async (req: IAuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+      // Check if user id is set
+      if (req.user?.userId === undefined) {
+        res.status(401).json({ error: 'Unauthorized', message: 'User not authenticated' });
+        return;
+      }
+
+      // Create post data
+      const postId = parseInt(req.body.postId);
+
+      if(isNaN(postId)){
+        res.status(422).json({ error: 'Invalid post id', message: 'Invalid post id' });
+        return;
+      }
+
+      // Call create post method in logic
+      const claimList = await this.claimLogic.getClaimsByPostId(req.user?.userId ,postId);
+
+      res.status(201).json({ message: 'List of claims succesfully fetched', claims: claimList });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to create your claim on the server' });
+    }
+  }
+
+  getClaimsByUserId = async (req: IAuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+      // Check if user id is set
+      if (req.user?.userId === undefined) {
+        res.status(401).json({ error: 'Unauthorized', message: 'User not authenticated' });
+        return;
+      }
+
+      // Call create post method in logic
+      const claimList = await this.claimLogic.getClaimsByUserId(req.user?.userId);
+
+      res.status(201).json({ message: 'Personal claims fetched', claims: claimList });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to create your claim on the server' });
+    }
+  }
+
+  
+  changeStatus = async (req: IAuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+       // Create post data
+       const claimId = parseInt(req.body.claimId);
+       const status = req.body.status;
+
+      // Check if user id is set
+      if (req.user?.userId === undefined) {
+        res.status(401).json({ error: 'Unauthorized', message: 'User not authenticated' });
+        return;
+      }
+     
+      if(status !== 'ACCEPTED' && status !== 'DENIED'){
+        res.status(422).json({ error: 'InvalidStatus', message: 'The provided status should be ACCEPTED|DENIED' });
+        return;
+      }
+
+      // Call create post method in logic
+      const result = await this.claimLogic.changeStatus(req.user?.userId ,claimId, status);
+
+      res.status(201).json({ message: 'List of claims succesfully fetched', data: result });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to create your claim on the server' });
+    }
+  }
 }
+
+

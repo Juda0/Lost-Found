@@ -8,6 +8,7 @@ import { Routes, Route } from 'react-router-dom'
 import Newpost from "./components/Posts/Create/NewPost.js"
 import ViewPost from "./components/Posts/View/ViewPost.js"
 import Find from "./components/Posts/Find/Find.js"
+import Claim from "./components/Claims/Claims.js"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="*" element={<NoMatch />} />
           <Route path="/posts/new" element={<Newpost />} />
           <Route path="/posts/:id/view" element={<ViewPost />} />
+          <Route path="/claims" element={<Claim />} />
     </Routes>
 
 
