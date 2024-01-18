@@ -1,0 +1,12 @@
+.wrap{
+  word-wrap: break-word;
+}
+
+.claimContainer{
+  min-height: 400px;
+}
+
+
+.clickable{
+  cursor: pointer;
+}

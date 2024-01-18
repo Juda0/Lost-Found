@@ -11,7 +11,8 @@ export class PostDAL implements IPostDAL {
   async getAllPostsWithFilters(search: string) {
     try {
       const a = await this.prisma.post.findMany({
-        where: { 
+        where: {
+          status: 'OWNER_NOT_FOUND',
           OR: [
             { title: { contains: search } },
             { description: { contains: search } },

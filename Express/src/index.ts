@@ -33,7 +33,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Use your routers
 app.use('/posts', postRouter);
 app.use('/user', userRouter);
-app.use('/claim', claimRouter);
+app.use('/claims', claimRouter);
 app.use('/database', databaseRouter);
 
 // Socket.IO connection handling

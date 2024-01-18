@@ -19,7 +19,7 @@ export const Claim = ({ postId, onClaimSuccess }) => {
   const handleShow = () => setShowModal(true);
 
   const sendClaim = () => {
-    axios.post('/claim/create', { postId, message })
+    axios.post('/claims/create', { postId, message })
       .then(response => {
         // Handle success
         onClaimSuccess();
