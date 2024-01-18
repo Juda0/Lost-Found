@@ -1,0 +1,41 @@
+.bodyCardsContainer {
+  background-image: url('../../../assets/DottedLinePath.svg');
+  background-repeat: repeat-y;
+}
+
+.cardShared{
+  background-color: #E9C46A;
+  padding-top: 10px;
+  min-height: 500px;
+  min-width: 80%;
+}@media (max-width: 768px) {
+  .cardShared{
+    min-height: 200px;
+    min-width: 100%;
+  }
+}
+
+.highlightUnderTitle{
+  color: #2A9D8F;
+}
+
+.cardBig{
+  min-height: 600px;
+  min-width: 100%;
+}
+
+.cardImgSmall{
+  min-height: 125px;
+  max-height: 125px;
+}
+
+.FindYourItemBtn{
+  background-color: transparent;
+  color: #4f4f4f;
+  border: 1px solid #4f4f4f;
+}
+
+.FindYourItemBtn:hover{
+  background-color: #4f4f4f;
+  color: #E9C46A;
+}

@@ -37,7 +37,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      setError(null); // Clear any previous error
 
         try {
           const token = await userLogin({ email, password });
@@ -46,6 +45,8 @@ const Login = () => {
             navigate('/posts');
             console.log('You are now logged in!');
             window.location.reload(); // Simulate pressing F5 to refresh the page
+          }else{
+            console.log('token not set')
           }
         } catch (error) {
           setError(error.message);
@@ -70,7 +71,7 @@ const Login = () => {
           </label>
           <label>
             <p>Password</p>
-            <input required type="password" data-cy="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
+            <input required type="password"  autoComplete="on" data-cy="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
           </label>
           <div className="button-container">
             <button type="submit" data-cy="submit" className='btnPrimary'>Login</button>
