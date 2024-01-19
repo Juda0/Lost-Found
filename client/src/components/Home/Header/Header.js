@@ -1,6 +1,6 @@
 import React from 'react';
-import { MDBBtn } from 'mdb-react-ui-kit';
 import jumbotronImage from "../../../assets/Keys_In_Forest.jpg";
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -16,9 +16,11 @@ export default function Header() {
                 <div className='text-white text-left'>
                   <h1 className='mb-3 fw-bold'>Find your items</h1>
                   <p className='mb-3'>Lost keys, wallets, and cherished items are a thing of the past. Our user-friendly Lost and Found app makes it easy to reunite with what's rightfully yours. Say goodbye to the frustration and hello to seamless recovery.</p>
+                  <NavLink to="/find">
                   <button>
                     Search
                   </button>
+                  </NavLink>
                 </div>
               </div>
               <div className='col-md-6'>

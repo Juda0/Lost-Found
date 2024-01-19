@@ -32,7 +32,7 @@ export default function BodyCards() {
                   <h1 className="card-title fw-bold mt-3">Items returned</h1>
                   <h3 className="card-text highlightUnderTitle fw-bold">12.432.543+</h3>
                   <div className='text-center'>
-                    <NavLink to="/find" style={{maxHeight: 'fit', maxWidth: 'fit'}}>
+                    <NavLink to="/find">
                     <button className='FindYourItemBtn'>Find your item</button>
                     </NavLink>
                   </div>

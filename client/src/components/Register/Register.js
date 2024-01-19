@@ -17,7 +17,7 @@ async function userRegister(credentials, navigate) {
     }
   } catch (error) {
     if (error.response) {
-      if (error.response.status === 401) {
+      if (error.response.status === 404) {
         throw new Error('Invalid email and/or password');
       } else {
         throw new Error('Register failed. Please try again later.');

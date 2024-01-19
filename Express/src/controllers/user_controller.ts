@@ -36,7 +36,7 @@ export class UserController {
       if (token) {
         res.status(200).json({ message: 'Successfully logged in', token });
       } else {
-        res.status(401).json({ error: 'Invalid email or password' });
+        res.status(404).json({ error: 'Invalid email or password' });
       }
     } catch (error) {
       console.error('Error in UserController.login:', error);

@@ -9,11 +9,38 @@ describe('Reponsive tests', () => {
         cy.get('[data-cy="hamburger"]').check().then(() => {
             cy.wait(500);
         });
-        cy.get('b').click();
+        cy.get('[data-cy="find"]').click();
+
+        cy.get('[data-cy="hamburger"]').check().then(() => {
+            cy.wait(500);
+        });
+        cy.get('[data-cy="find"]').click();
+
+        cy.get('[data-cy="hamburger"]').check().then(() => {
+            cy.wait(500);
+        });
+        cy.get('[data-cy="find"]').click();
+
+        cy.get('[data-cy="hamburger"]').check().then(() => {
+            cy.wait(500);
+        });
         cy.get('[data-cy="find"]').click();
         cy.get('[data-cy="posts"]').click();
+
+        cy.get('[data-cy="hamburger"]').check().then(() => {
+            cy.wait(500);
+        });
+        cy.get('[data-cy="find"]').click();
+
+        cy.get('[data-cy="hamburger"]').check().then(() => {
+            cy.wait(500);
+        });
+        cy.get('[data-cy="find"]').click();
+        
+        cy.get('[data-cy="hamburger"]').check().then(() => {
+            cy.wait(500);
+        });
         cy.get('[data-cy="login"]').click();
-        cy.get('[data-cy="hamburger"]').uncheck();
         /* ==== End Cypress Studio ==== */
     })
-  })
+})
