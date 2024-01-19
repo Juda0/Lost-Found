@@ -5,6 +5,7 @@ import { Server } from 'socket.io'; // Import Socket.IO
 
 import postRouter from './routes/post_routes';
 import userRouter from './routes/user_routes';
+import claimRouter from './routes/claim_routes';
 import databaseRouter from './routes/database_routes';
 import path from 'path';
 
@@ -32,6 +33,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Use your routers
 app.use('/posts', postRouter);
 app.use('/user', userRouter);
+app.use('/claims', claimRouter);
 app.use('/database', databaseRouter);
 
 // Socket.IO connection handling

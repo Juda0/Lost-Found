@@ -21,3 +21,16 @@ code {
 a{
   text-decoration: none;
 }
+
+&::-webkit-scrollbar {
+  width: 9px;
+}
+
+&::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 6px;
+}
+
+&::-webkit-scrollbar-track {
+  background-color: transparent;
+}

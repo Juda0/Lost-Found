@@ -15,9 +15,9 @@ export default function Header() {
               <div className='text-white'>
                 <h1 className='mb-3 w-50'>Heading</h1>
                 <p className='mb-3 w-50'>Lost keys, wallets, and cherished items are a thing of the past. Our user-friendly Lost and Found app makes it easy to reunite with what's rightfully yours. Say goodbye to the frustration and hello to seamless recovery.</p>
-                <MDBBtn tag="a" className='mx-2' color='secondary'>
+                <button tag="a" className='mx-2' >
                   Search
-                </MDBBtn>
+                </button>
               </div>
             </div>
           </div>
