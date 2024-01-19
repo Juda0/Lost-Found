@@ -44,6 +44,7 @@ export const CreateMap = ({ center, zoom, title, description, onMarkerPositionCh
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker
+         data-cy="draggablleMarker"
       draggable={true}
       eventHandlers={eventHandlers}
       position={position}

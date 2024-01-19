@@ -59,8 +59,8 @@ function Navbar() {
         <span></span>
 
         {/* logo */}
-        <NavLink to="/" data-cy="logo" className="menu-logo">
-          <img src={logo} alt="Lost&Found" />
+        <NavLink to="/" className="menu-logo">
+          <img data-cy="logo" src={logo} alt="Lost&Found" />
         </NavLink>
 
         {/* menu items */}
@@ -90,7 +90,7 @@ function Navbar() {
             </li>
             <li>
               {isLoggedIn ? (
-                <Link to="/" onClick={handleLogout} data-cy="logout">
+                <Link to="/" data-cy="logout" onClick={handleLogout}>
                   Logout
                 </Link>
               ) : (

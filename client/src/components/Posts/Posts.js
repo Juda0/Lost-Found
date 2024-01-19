@@ -109,7 +109,7 @@ const Posts = () => {
     <>
       <center>
         <p className={styles['error-message']}>{errorMessage}</p>
-        <NavLink to="/posts/new" className={styles['no-active-color']}>
+        <NavLink to="/posts/new" data-cy="logo" className={styles['no-active-color']}>
           <button>+ New Post</button>
         </NavLink>
         <h1>My posts</h1>

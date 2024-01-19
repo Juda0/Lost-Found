@@ -57,20 +57,20 @@ const Register = () => {
         <h2>Create a new account</h2>
         <label>
           <p>Username</p>
-          <input type="text" name='username' onChange={(e) => setUsername(e.target.value)}/>
+          <input type="text" data-cy="username" name='username' onChange={(e) => setUsername(e.target.value)}/>
         </label>
         <label>
           <p>Email</p>
-          <input type="text" name='email' onChange={(e) => setEmail(e.target.value)}/>
+          <input type="text" data-cy="email" name='email' onChange={(e) => setEmail(e.target.value)}/>
         </label>
         <label>
           <p>Password</p>
-          <input type="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
+          <input type="password" data-cy="password" name='password' onChange={(e) => setPassword(e.target.value)}/>
         </label>
         <div>
-          <button type="submit">Register</button>
+          <button data-cy="registerConfirm" type="submit">Register</button>
         </div>
-        <p id='errorMessage'>{errorMessage}</p>
+        <p id='errorMessage' data-cy="errorMessage">{errorMessage}</p>
       </form>
     </center>
     </>

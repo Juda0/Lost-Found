@@ -118,12 +118,12 @@ export const PostForm = ({ onFormSubmit, onErrorMessage  }) => {
       
       <label className={styles['first-label']}>
         Title:
-        <input required type="text" placeholder="Silver Necklace.." name="title" value={formData.title} onChange={handleChange} />
+        <input required type="text"  data-cy="postTitle" placeholder="Silver Necklace.." name="title" value={formData.title} onChange={handleChange} />
       </label>
 
       <label name="description">
         Description:
-        <textarea required name="description" placeholder="This necklace has two small.." value={formData.description} onChange={handleChange} />
+        <textarea required name="description"  data-cy="postDescription" placeholder="This necklace has two small.." value={formData.description} onChange={handleChange} />
       </label>
 
       {/* Hidden input fields for latitude and longitude */}
@@ -136,16 +136,17 @@ export const PostForm = ({ onFormSubmit, onErrorMessage  }) => {
           Location:
           <div className={styles["input-with-icon"]}>
             <input required placeholder='Drag the marker icon or click the GPS button to set location' style={{color: "gray", backgroundColor: "transparent"}} type="text" value={`${formData.latitude || ''}${coordSeperator} ${formData.longitude || ''}`} readOnly />
-            <img onClick={handleGetLocation} className={styles["locationIcon"]} src={locationPin} alt="Get Location" />
+            <img onClick={handleGetLocation}  data-cy="fetchLocationButton" className={styles["locationIcon"]} src={locationPin} alt="Get Location" />
           </div>
         </label>
-      <CreateMap key={mapCenter} center={mapCenter} title={formData.title} description={formData.description} zoom={zoomValue} onMarkerPositionChange={handleMarkerPositionChange}/>
+      <CreateMap key={mapCenter} center={mapCenter}  data-cy="map" title={formData.title} description={formData.description} zoom={zoomValue} onMarkerPositionChange={handleMarkerPositionChange}/>
 
       </div>
 
       <label>
         Tags:
         <TagsInput
+         data-cy="tagsInput"
           value={formData.tags}
           onChange={(tags) => setFormData({ ...formData, tags })}
           name="tags"
@@ -162,7 +163,7 @@ export const PostForm = ({ onFormSubmit, onErrorMessage  }) => {
         <img src={imagePreview} alt="Preview" className={styles['preview-image']}/>
       )}
 
-      <button type="submit">Create Post</button>
+      <button type="submit"  data-cy="createPost">Create Post</button>
     </form>
     </>
   );

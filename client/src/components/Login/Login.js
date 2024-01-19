@@ -75,7 +75,7 @@ const Login = () => {
           </label>
           <div className="button-container">
             <button type="submit" data-cy="submit" className='btnPrimary'>Login</button>
-            <button onClick={handleRegisterClick} className='btnSecondary'>Register</button>
+            <button onClick={handleRegisterClick} data-cy="register" className='btnSecondary'>Register</button>
           </div>
         </form>
         <p id='errorMessage'>{errorMessage}</p>

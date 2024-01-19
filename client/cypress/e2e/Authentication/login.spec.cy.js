@@ -27,8 +27,6 @@ describe('The Login Page', () => {
       },
     });
 
-   
-
     // Start at homepage
     cy.visit('/')
   });
